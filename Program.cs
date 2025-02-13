@@ -1,4 +1,9 @@
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NewsPaper.src.Application.Interfaces;
+using NewsPaper.src.Application.Mapping;
+using NewsPaper.src.Application.Services;
+using NewsPaper.src.Domain.Interfaces;
 using NewsPaper.src.Domain.ValueObjects;
 using NewsPaper.src.Infrastructure.Persistence;
 
@@ -6,16 +11,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("V1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "NewsPaper API", Version = "V1" });
+    c.SwaggerDoc("V1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "NewsPaper API", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
         In = Microsoft.OpenApi.Models.ParameterLocation.Header,
         Description = "Please enter into field the word 'Bearer' following by space and JWT",
         Name = "Authorization",
-        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
     });
 
     c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
@@ -34,8 +44,11 @@ builder.Services.AddSwaggerGen(c =>
     });
 
 });
+//var apiOption = builder.Configuration.GetSection("ApiOptions").Get<ApiOptions>();
+//builder.Services.Configure<ApiOptions>(builder.Configuration.GetSection("ApiOptions"));
 var apiOption = builder.Configuration.GetSection("ApiOptions").Get<ApiOptions>();
 builder.Services.AddSingleton(apiOption);
+
 
 builder.Services.AddAuthentication(c =>
 {
@@ -56,15 +69,26 @@ builder.Services.AddAuthentication(c =>
     };
 });
 
-builder.Services.AddControllers();
+
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(apiOption.StringConnection);
 });
 
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MappingConfig());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<INewsService, NewService>();  // Chú ý tên class là NewService
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -75,10 +99,29 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors();
 
+app.UseStaticFiles();
+
+app.UseRouting();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.DefaultModelExpandDepth(-1);
+    c.SwaggerEndpoint("/swagger/V1/swagger.json", "NewsPaper API V1");
+    c.DocumentTitle = "NewsPaper API";
+    c.RoutePrefix = string.Empty;
+});
+app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//});
+
 app.MapControllers();
+
 
 app.Run();

@@ -21,11 +21,10 @@
   <ItemGroup>
     <Folder Include="src\Application\Features\" />
     <Folder Include="src\Application\Exceptions\" />
-    <Folder Include="src\Application\Services\" />
     <Folder Include="src\Domain\Entities\" />
     <Folder Include="src\Domain\Enums\" />
     <Folder Include="src\Infrastructure\ExternalServices\" />
-    <Folder Include="src\Presentation\Controllers\" />
+    <Folder Include="src\Infrastructure\Services\" />
     <Folder Include="src\Presentation\Middlewares\" />
   </ItemGroup>
 

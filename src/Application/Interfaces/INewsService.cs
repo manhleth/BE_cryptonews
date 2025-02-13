@@ -6,8 +6,8 @@ namespace NewsPaper.src.Application.Interfaces
     {
         Task<NewsDto> GetNewsByIdAsync(int id);
         Task<NewsDto> CreateNewsAsync(CreateNewsDto newsDto);
-        Task UpdateNewsAsync(NewsDto newsDto);
-        Task DeleteNewsAsync(int id);
+        Task<NewsDto> UpdateNewsAsync(NewsDto newsDto, int id);
+        Task<NewsDto> DeleteNewsAsync(int id);
         Task<List<NewsDto>> SearchNewsAsync();
     }
 }

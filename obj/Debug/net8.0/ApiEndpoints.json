@@ -1,0 +1,81 @@
+[
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "CreateNewsAsync",
+    "RelativePath": "api/News",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newsDto",
+        "Type": "NewsPaper.src.Application.DTOs.CreateNewsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "UpdateNewsAsync",
+    "RelativePath": "api/News",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newsDto",
+        "Type": "NewsPaper.src.Application.DTOs.NewsDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "DeleteNewsAsync",
+    "RelativePath": "api/News/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "GetNewsByIdAsync",
+    "RelativePath": "api/News/GetNewsByIdAsync",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.DTOs.NewsDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
