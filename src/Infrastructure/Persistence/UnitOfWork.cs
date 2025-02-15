@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using NewsPaper.src.Domain.Interfaces;
 using NewsPaper.src.Infrastructure.Interfaces;
+using NewsPaper.src.Infrastructure.Repositories;
 
 namespace NewsPaper.src.Infrastructure.Persistence
 {
@@ -13,7 +14,7 @@ namespace NewsPaper.src.Infrastructure.Persistence
         private bool _disposed;
 
         // repository field
-        private INewsRepository _news;
+        private NewsRepository _news;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -21,7 +22,7 @@ namespace NewsPaper.src.Infrastructure.Persistence
         }
         
         // Lazy loading cho các repositories
-        public INewsRepository News => _news ??= new NewsRepository(_context);
+        public NewsRepository News => _news ??= new NewsRepository(_context);
 
         // transaction management
         public async Task BeginTransactionAsync()

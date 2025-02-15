@@ -85,7 +85,14 @@ builder.Services.AddSingleton(mapper);
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<INewsService, NewService>();  // Chú ý tên class là NewService
+//builder.Services.AddScoped<IBaseService, NewService>();  // Chú ý tên class là NewService
+builder.Services.AddScoped<NewsService>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<CommentService>();
+builder.Services.AddScoped<MediaFileService>();
+builder.Services.AddScoped<ChildrenCategoryService>();
+builder.Services.AddScoped<SavedService>();
+builder.Services.AddScoped<UserService>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

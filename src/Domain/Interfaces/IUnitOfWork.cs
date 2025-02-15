@@ -1,9 +1,11 @@
-﻿namespace NewsPaper.src.Domain.Interfaces
+﻿using NewsPaper.src.Infrastructure.Repositories;
+
+namespace NewsPaper.src.Domain.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        INewsRepository News { get; }
-
+        // repository
+        NewsRepository News { get; }
         // transaction
         Task<int> SaveChangesAsync();
         Task BeginTransactionAsync();

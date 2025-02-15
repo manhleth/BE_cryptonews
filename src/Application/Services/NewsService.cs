@@ -1,18 +1,18 @@
-﻿using NewsPaper.src.Application.DTOs;
+﻿using AutoMapper;
+using NewsPaper.src.Application.DTOs;
 using NewsPaper.src.Application.Interfaces;
-using NewsPaper.src.Domain.Interfaces;
 using NewsPaper.src.Domain.Entities;
-using AutoMapper;
+using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Application.Services
 {
-    public class NewService : INewsService
+
+    public class NewsService : IBaseService<NewsDto>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-
-        public NewService(IUnitOfWork unitOfWork, IMapper mapper)
+        public NewsService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -26,10 +26,24 @@ namespace NewsPaper.src.Application.Services
             return _mapper.Map<NewsDto>(news);
         }
 
+        public Task<NewsDto> CreateNewsAsync(NewsDto newsDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        //public Task<NewsDto> CreateNewsAsync(NewsDto newsDto)
+        //{
+        //    //throw new NotImplementedException();
+        //    var news = _mapper.Map<News>(newsDto);
+        //    await _unitOfWork.News.AddAsync(news);
+        //    await _unitOfWork.SaveChangesAsync();
+        //    return _mapper.Map<NewsDto>(news);
+        //}
+
         public async Task<NewsDto> DeleteNewsAsync(int id)
         {
             var news = await _unitOfWork.News.GetByIdAsync(id);
-            if(news == null)
+            if (news == null)
                 throw new DirectoryNotFoundException($"Can't find news with id {id}");
             await _unitOfWork.News.DeleteAsync(news);
             await _unitOfWork.SaveChangesAsync();
@@ -49,7 +63,7 @@ namespace NewsPaper.src.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<NewsDto> UpdateNewsAsync(NewsDto newsDto,int id)
+        public async Task<NewsDto> UpdateNewsAsync(NewsDto newsDto, int id)
         {
             var news = await _unitOfWork.News.GetByIdAsync(id);
             if (news == null)

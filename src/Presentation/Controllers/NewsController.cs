@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsPaper.src.Application.DTOs;
 using NewsPaper.src.Application.Interfaces;
 using NewsPaper.src.Application.Services;
+using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Presentation.Controllers
 {
@@ -10,12 +12,16 @@ namespace NewsPaper.src.Presentation.Controllers
     [ApiController]
     public class NewsController : ControllerBase
     {
-        private readonly INewsService _newsService;
+        private readonly NewsService _newsService;
         private readonly ILogger<NewsController> _logger;
-        public NewsController(INewsService newsService, ILogger<NewsController> logger)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        public NewsController(NewsService newsService, ILogger<NewsController> logger, IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _newsService = newsService;
             _logger = logger;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _newsService = newsService;
         }
         [HttpGet("GetNewsByIdAsync")]
         public async Task<NewsDto> GetNewsByIdAsync(int id)
