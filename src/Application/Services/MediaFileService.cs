@@ -1,10 +1,13 @@
-﻿using NewsPaper.src.Application.DTOs;
-using NewsPaper.src.Application.Interfaces;
+﻿using AutoMapper;
+using NewsPaper.src.Application.DTOs;
+using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Application.Services
 {
-    public class MediaFileService : IBaseService<MediaFileDto>
+    public class MediaFileService 
     {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
         public Task<MediaFileDto> CreateNewsAsync(MediaFileDto newsDto)
         {
             throw new NotImplementedException();

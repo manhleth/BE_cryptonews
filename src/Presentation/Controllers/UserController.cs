@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewsPaper.src.Application.DTOs;
 using NewsPaper.src.Application.Services;
 using NewsPaper.src.Domain.Interfaces;
 
@@ -21,13 +22,14 @@ namespace NewsPaper.src.Presentation.Controllers
             _mapper = mapper;
             _userService = userService;
         }
-        [HttpGet]
-        public IActionResult GetUsers()
+        [HttpPost("UserLogin")]
+        public async Task<IActionResult> UserLogin(UserDto userdto)
         {
-            return Ok();
+            var user = await _userService.UserLogin(userdto);
+            return Ok(user);
         }
-        [HttpPost]
-        public IActionResult CreateUser()
+        [HttpPost("UserRegister")]
+        public IActionResult UserRegister()
         {
             return Ok();
         }

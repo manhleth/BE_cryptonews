@@ -21,6 +21,7 @@
   <ItemGroup>
     <Folder Include="src\Application\Features\" />
     <Folder Include="src\Application\Exceptions\" />
+    <Folder Include="src\Application\Interfaces\" />
     <Folder Include="src\Domain\Entities\" />
     <Folder Include="src\Domain\Enums\" />
     <Folder Include="src\Infrastructure\ExternalServices\" />

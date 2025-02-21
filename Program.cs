@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using NewsPaper.src.Application.Interfaces;
 using NewsPaper.src.Application.Mapping;
 using NewsPaper.src.Application.Services;
 using NewsPaper.src.Domain.Interfaces;

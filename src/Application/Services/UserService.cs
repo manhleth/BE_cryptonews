@@ -1,29 +1,27 @@
-﻿using NewsPaper.src.Application.DTOs;
-using NewsPaper.src.Application.Interfaces;
+﻿using AutoMapper;
+using NewsPaper.src.Application.DTOs;
+using NewsPaper.src.Domain.Entities;
+using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Application.Services
 {
-    public class UserService : IBaseService<UserDto>
+    public class UserService
     {
-        public Task<UserDto> CreateNewsAsync(UserDto newsDto)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        public Task<UserDto> DeleteNewsAsync(int id)
+        public async Task<UserDto> UserLogin(UserDto newsDto)
         {
-            throw new NotImplementedException();
-        }
-        public Task<UserDto> GetNewsByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public Task<List<UserDto>> SearchNewsAsync()
-        {
-            throw new NotImplementedException();
-        }
-        public Task<UserDto> UpdateNewsAsync(UserDto newsDto, int id)
-        {
-            throw new NotImplementedException();
+            var user = await _unitOfWork.User.FindOnlyByCondition(x => x.Email == newsDto.Email && x.Password == newsDto.password);
+            if (user == null)
+            {
+                return null;
+            }
+            return _mapper.Map<UserDto>(user);
         }
     }
     

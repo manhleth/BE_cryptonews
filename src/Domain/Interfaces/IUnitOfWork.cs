@@ -6,6 +6,7 @@ namespace NewsPaper.src.Domain.Interfaces
     {
         // repository
         NewsRepository News { get; }
+        UserRepository User { get; }
         // transaction
         Task<int> SaveChangesAsync();
         Task BeginTransactionAsync();

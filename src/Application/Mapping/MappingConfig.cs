@@ -9,6 +9,8 @@ namespace NewsPaper.src.Application.Mapping
         public MappingConfig() { 
             CreateMap<News, NewsDto>();
             CreateMap<NewsDto, News>();
+            CreateMap<UserDto, User>();
+            CreateMap<User, UserDto>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NewsPaper.src.Domain.Entities;
+using System.Collections;
 
 namespace NewsPaper.src.Domain.Interfaces
 {
@@ -8,5 +9,6 @@ namespace NewsPaper.src.Domain.Interfaces
         Task AddAsync(T news);
         Task UpdateAsync(T news);
         Task DeleteAsync(T news);
+        Task<IEnumerable<T>> GetAll(T news);
     }
 }

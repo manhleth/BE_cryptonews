@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsPaper.src.Application.DTOs;
-using NewsPaper.src.Application.Interfaces;
 using NewsPaper.src.Application.Services;
 using NewsPaper.src.Domain.Interfaces;
 

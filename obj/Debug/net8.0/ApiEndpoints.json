@@ -1,5 +1,165 @@
 [
   {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CategoryController",
+    "Method": "CreateCategory",
+    "RelativePath": "api/Category/CreateCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CategoryController",
+    "Method": "DeleteCategory",
+    "RelativePath": "api/Category/DeleteCategory",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CategoryController",
+    "Method": "GetCategories",
+    "RelativePath": "api/Category/GetCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CategoryController",
+    "Method": "UpdateCategory",
+    "RelativePath": "api/Category/UpdateCategory",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
+    "Method": "CreateChildrenCategory",
+    "RelativePath": "api/ChildrenCategory/CreateChildrenCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
+    "Method": "DeleteChildrenCategory",
+    "RelativePath": "api/ChildrenCategory/DeleteChildrenCategory",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
+    "Method": "GetChildrenCategories",
+    "RelativePath": "api/ChildrenCategory/GetChildrenCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
+    "Method": "UpdateChildrenCategory",
+    "RelativePath": "api/ChildrenCategory/UpdateChildrenCategory",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "GetComments",
+    "RelativePath": "api/Comment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "CreateComment",
+    "RelativePath": "api/Comment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "UpdateComment",
+    "RelativePath": "api/Comment",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "DeleteComment",
+    "RelativePath": "api/Comment",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.MediaFileController",
+    "Method": "GetMediaFiles",
+    "RelativePath": "api/MediaFile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.MediaFileController",
+    "Method": "CreateMediaFile",
+    "RelativePath": "api/MediaFile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.MediaFileController",
+    "Method": "UpdateMediaFile",
+    "RelativePath": "api/MediaFile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.MediaFileController",
+    "Method": "DeleteMediaFile",
+    "RelativePath": "api/MediaFile",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
     "Method": "CreateNewsAsync",
     "RelativePath": "api/News",
@@ -77,5 +237,91 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
+    "Method": "GetSaved",
+    "RelativePath": "api/Saved",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
+    "Method": "CreateSaved",
+    "RelativePath": "api/Saved",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
+    "Method": "UpdateSaved",
+    "RelativePath": "api/Saved",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
+    "Method": "DeleteSaved",
+    "RelativePath": "api/Saved",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/User",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/User",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
+    "Method": "UserLogin",
+    "RelativePath": "api/User/UserLogin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userdto",
+        "Type": "NewsPaper.src.Application.DTOs.UserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
+    "Method": "UserRegister",
+    "RelativePath": "api/User/UserRegister",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

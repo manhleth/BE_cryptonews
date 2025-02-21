@@ -19,6 +19,11 @@ namespace NewsPaper.src.Infrastructure.Interfaces
             return await _context.Set<T>().FindAsync(id);
         }
 
+        public async Task<T> FindOnlyByCondition(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+
         public async Task AddAsync(T news)
         {
             _context.Set<T>().Add(news);
@@ -40,6 +45,16 @@ namespace NewsPaper.src.Infrastructure.Interfaces
         {
             _context.Set<T>().Remove(news);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllObject()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+
+        public Task<IEnumerable<T>> GetAll(T news)
+        {
+            throw new NotImplementedException();
         }
     }
 }

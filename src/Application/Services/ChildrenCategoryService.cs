@@ -1,11 +1,14 @@
-﻿using NewsPaper.src.Application.DTOs;
-using NewsPaper.src.Application.Interfaces;
+﻿using AutoMapper;
+using NewsPaper.src.Application.DTOs;
 using NewsPaper.src.Domain.Entities;
+using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Application.Services
 {
-    public class ChildrenCategoryService : IBaseService<ChildrenCategoryDto>
+    public class ChildrenCategoryService
     {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
         public Task<ChildrenCategoryDto> CreateNewsAsync(ChildrenCategoryDto newsDto)
         {
             throw new NotImplementedException();

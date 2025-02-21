@@ -15,6 +15,7 @@ namespace NewsPaper.src.Infrastructure.Persistence
 
         // repository field
         private NewsRepository _news;
+        private UserRepository _user;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -23,6 +24,8 @@ namespace NewsPaper.src.Infrastructure.Persistence
         
         // Lazy loading cho các repositories
         public NewsRepository News => _news ??= new NewsRepository(_context);
+
+        public UserRepository User => _user ??= new UserRepository(_context);
 
         // transaction management
         public async Task BeginTransactionAsync()

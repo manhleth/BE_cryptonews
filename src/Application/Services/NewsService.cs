@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using NewsPaper.src.Application.DTOs;
-using NewsPaper.src.Application.Interfaces;
 using NewsPaper.src.Domain.Entities;
 using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Application.Services
 {
 
-    public class NewsService : IBaseService<NewsDto>
+    public class NewsService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
