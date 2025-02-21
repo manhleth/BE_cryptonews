@@ -169,3 +169,7 @@ B:\NewspaperProject_ManhLe\NewsPaper\bin\Debug\net8.0\runtimes\win\lib\net6.0\Sy
 B:\NewspaperProject_ManhLe\NewsPaper\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 B:\NewspaperProject_ManhLe\NewsPaper\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 B:\NewspaperProject_ManhLe\NewsPaper\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+B:\NewspaperProject_ManhLe\NewsPaper\obj\Debug\net8.0\NewsPaper.sourcelink.json
+B:\NewspaperProject_ManhLe\NewsPaper\bin\Debug\net8.0\AutoMapper.dll
+B:\NewspaperProject_ManhLe\NewsPaper\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+B:\NewspaperProject_ManhLe\NewsPaper\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
