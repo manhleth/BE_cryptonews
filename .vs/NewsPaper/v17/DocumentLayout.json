@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "B:\\NewspaperProject_ManhLe\\NewsPaper\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -67,10 +75,6 @@
       "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\savedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\savedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -113,10 +117,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\childrencategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\childrencategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\saveddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -214,7 +214,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -222,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": ".gitignore",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -235,31 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CommentService.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\CommentService.cs",
-              "RelativeDocumentMoniker": "src\\Application\\Services\\CommentService.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\CommentService.cs",
-              "RelativeToolTip": "src\\Application\\Services\\CommentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T03:03:21.294Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ChildrenCategoryService.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\ChildrenCategoryService.cs",
-              "RelativeDocumentMoniker": "src\\Application\\Services\\ChildrenCategoryService.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\ChildrenCategoryService.cs",
-              "RelativeToolTip": "src\\Application\\Services\\ChildrenCategoryService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T02:58:15.671Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "CategoryService.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\CategoryService.cs",
               "RelativeDocumentMoniker": "src\\Application\\Services\\CategoryService.cs",
@@ -271,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "UserController.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\UserController.cs",
@@ -283,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "UserService.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "src\\Application\\Services\\UserService.cs",
@@ -295,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -307,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "NewsController.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\NewsController.cs",
               "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\NewsController.cs",
@@ -315,12 +291,61 @@
               "RelativeToolTip": "src\\Presentation\\Controllers\\NewsController.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T06:27:09.793Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-13T06:27:09.793Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "BaseRepository.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeDocumentMoniker": "src\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeToolTip": "src\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAYwBoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T15:02:15.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\CategoryController.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "src\\Presentation\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T02:55:37.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ChildrenCategoryService.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\ChildrenCategoryService.cs",
+              "RelativeDocumentMoniker": "src\\Application\\Services\\ChildrenCategoryService.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\ChildrenCategoryService.cs",
+              "RelativeToolTip": "src\\Application\\Services\\ChildrenCategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T02:58:15.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CommentService.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\CommentService.cs",
+              "RelativeDocumentMoniker": "src\\Application\\Services\\CommentService.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\CommentService.cs",
+              "RelativeToolTip": "src\\Application\\Services\\CommentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T03:03:21.294Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -328,12 +353,11 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-11T14:46:47.871Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T14:46:47.871Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "NewsService.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\NewsService.cs",
               "RelativeDocumentMoniker": "src\\Application\\Services\\NewsService.cs",
@@ -345,7 +369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "MediaFileService.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\MediaFileService.cs",
               "RelativeDocumentMoniker": "src\\Application\\Services\\MediaFileService.cs",
@@ -357,7 +381,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "SavedService.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\SavedService.cs",
               "RelativeDocumentMoniker": "src\\Application\\Services\\SavedService.cs",
@@ -369,7 +393,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "MappingConfig.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Mapping\\MappingConfig.cs",
               "RelativeDocumentMoniker": "src\\Application\\Mapping\\MappingConfig.cs",
@@ -381,7 +405,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "UserDtoResponse.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\UserDtoResponse.cs",
               "RelativeDocumentMoniker": "src\\Application\\DTOs\\UserDtoResponse.cs",
@@ -393,7 +417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "User.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Domain\\Entities\\User.cs",
               "RelativeDocumentMoniker": "src\\Domain\\Entities\\User.cs",
@@ -405,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "UserDto.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\UserDto.cs",
               "RelativeDocumentMoniker": "src\\Application\\DTOs\\UserDto.cs",
@@ -417,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "SavedController.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\SavedController.cs",
               "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\SavedController.cs",
@@ -429,19 +453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "BaseRepository.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Repositories\\BaseRepository.cs",
-              "RelativeDocumentMoniker": "src\\Infrastructure\\Repositories\\BaseRepository.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Repositories\\BaseRepository.cs",
-              "RelativeToolTip": "src\\Infrastructure\\Repositories\\BaseRepository.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAYwBoAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T15:02:15.631Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "NewsRepository.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Repositories\\NewsRepository.cs",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Repositories\\NewsRepository.cs",
@@ -453,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Persistence\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Persistence\\UnitOfWork.cs",
@@ -465,7 +477,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "IUnitOfWork.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Domain\\Interfaces\\IUnitOfWork.cs",
               "RelativeDocumentMoniker": "src\\Domain\\Interfaces\\IUnitOfWork.cs",
@@ -477,7 +489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Repositories\\UserRepository.cs",
@@ -489,7 +501,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "CategoryRepository.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Repositories\\CategoryRepository.cs",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Repositories\\CategoryRepository.cs",
@@ -501,7 +513,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "IBaseRepository.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Domain\\Interfaces\\IBaseRepository.cs",
               "RelativeDocumentMoniker": "src\\Domain\\Interfaces\\IBaseRepository.cs",
@@ -513,7 +525,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Persistence\\AppDbContext.cs",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Persistence\\AppDbContext.cs",
@@ -525,7 +537,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "MediaFileController.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\MediaFileController.cs",
               "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\MediaFileController.cs",
@@ -537,7 +549,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "CommentController.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\CommentController.cs",
               "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\CommentController.cs",
@@ -549,7 +561,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "ChildrenCategoryController.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\ChildrenCategoryController.cs",
               "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\ChildrenCategoryController.cs",
@@ -558,18 +570,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAB9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-15T03:00:15.807Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\CategoryController.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "src\\Presentation\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T02:55:37.039Z"
             },
             {
               "$type": "Document",

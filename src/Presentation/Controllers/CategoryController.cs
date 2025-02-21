@@ -24,6 +24,7 @@ namespace NewsPaper.src.Presentation.Controllers
         [HttpGet("GetCategories")]
         public IActionResult GetCategories()
         {
+            var categories = _categoryService.SearchNewsAsync();
             return Ok();
         }
         [HttpPost("CreateCategory")]
