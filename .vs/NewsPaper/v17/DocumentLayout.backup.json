@@ -210,11 +210,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
@@ -226,8 +234,7 @@
               "RelativeToolTip": "src\\Application\\Services\\NewsService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T15:20:15.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T15:20:15.764Z"
             },
             {
               "$type": "Document",
@@ -275,8 +282,7 @@
               "RelativeToolTip": "src\\Presentation\\Controllers\\UserController.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAAABsAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T03:09:21.643Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-15T03:09:21.643Z"
             },
             {
               "$type": "Document",
@@ -288,8 +294,7 @@
               "RelativeToolTip": "src\\Application\\Services\\UserService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T03:08:46.187Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-15T03:08:46.187Z"
             },
             {
               "$type": "Document",
@@ -301,8 +306,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T14:43:30.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T14:43:30.662Z"
             },
             {
               "$type": "Document",
@@ -312,7 +316,7 @@
               "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\NewsController.cs",
               "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\NewsController.cs",
               "RelativeToolTip": "src\\Presentation\\Controllers\\NewsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-13T06:27:09.793Z",
               "EditorCaption": ""
