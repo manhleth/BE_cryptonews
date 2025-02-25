@@ -18,6 +18,5 @@
 
         public int RoleId { get; set; }
 
-
     }
 }

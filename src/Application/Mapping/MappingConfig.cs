@@ -7,10 +7,15 @@ namespace NewsPaper.src.Application.Mapping
     public class MappingConfig : Profile
     {
         public MappingConfig() { 
-            CreateMap<News, NewsDto>();
             CreateMap<NewsDto, News>();
+            CreateMap<CreateNewsDto, News>();   
             CreateMap<UserDto, User>();
             CreateMap<User, UserDto>();
+            CreateMap<UserRegisterDto, User>();
+            CreateMap<SavedDto, Saved>();   
+            CreateMap<Saved, SavedDto>();
+            CreateMap<News, NewsDto>();
+            CreateMap<Category, CategoryDto>();
         }
     }
 }

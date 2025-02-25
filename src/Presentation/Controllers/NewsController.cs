@@ -1,15 +1,18 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsPaper.src.Application.DTOs;
+using NewsPaper.src.Application.Features;
 using NewsPaper.src.Application.Services;
+using NewsPaper.src.Domain.Entities;
 using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NewsController : ControllerBase
+    public class NewsController : BaseController<NewsController>
     {
         private readonly NewsService _newsService;
         private readonly ILogger<NewsController> _logger;
@@ -28,18 +31,17 @@ namespace NewsPaper.src.Presentation.Controllers
             return await _newsService.GetNewsByIdAsync(id);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateNewsAsync([FromBody] CreateNewsDto newsDto)
+        [HttpPost("CreateNewPost")]
+        public async Task<object> CreateNewsAsync([FromForm] CreateNewsDto newsDto)
         {
             try
             {
                 var news = await _newsService.CreateNewsAsync(newsDto);
-                return Ok(news);
+                return new ResponseData { Data = news, StatusCode = 1 };
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while creating news");
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return new ResponseData { Data = ex, StatusCode = -1 };
             }
         }
 
