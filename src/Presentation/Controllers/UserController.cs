@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsPaper.src.Application.DTOs;
+using NewsPaper.src.Application.Features;
 using NewsPaper.src.Application.Services;
 using NewsPaper.src.Domain.Interfaces;
 
@@ -9,7 +11,7 @@ namespace NewsPaper.src.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseController<UserController>
     {
         private readonly UserService _userService;
         private readonly ILogger<UserController> _logger;
@@ -23,22 +25,28 @@ namespace NewsPaper.src.Presentation.Controllers
             _userService = userService;
         }
         [HttpPost("UserLogin")]
-        public async Task<IActionResult> UserLogin(UserDto userdto)
+        [AllowAnonymous]
+        public async Task<ResponseData> UserLogin(UserDto userdto)
         {
             var user = await _userService.UserLogin(userdto);
-            return Ok(user);
+            return new ResponseData { Data = user, StatusCode = 1 };    
         }
         [HttpPost("UserRegister")]
-        public IActionResult UserRegister()
+        [AllowAnonymous]
+        public async Task<ResponseData> UserRegister(UserRegisterDto newUser)
         {
-            return Ok();
+            var user = await _userService.UserRegister(newUser);
+            return new ResponseData { Data = user, StatusCode = 1 };
         }
-        [HttpPut]
-        public IActionResult UpdateUser()
+        [Authorize]
+        [HttpPost]
+        public async Task<ResponseData> UpdateUser(UserRegisterDto userUpdate)
         {
-            return Ok();
+            var user = await _userService.UpdateUserInfor(userUpdate);
+            return new ResponseData { Data = user, StatusCode = 1 };
         }
         [HttpDelete]
+        [Authorize]
         public IActionResult DeleteUser()
         {
             return Ok();

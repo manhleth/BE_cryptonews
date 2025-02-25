@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using NewsPaper.src.Application.DTOs;
+using NewsPaper.src.Domain.Entities;
 using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Application.Services
@@ -8,9 +9,20 @@ namespace NewsPaper.src.Application.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public Task<CategoryDto> CreateNewsAsync(CategoryDto newsDto)
+        public CategoryService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+        }
+        public async Task<object> CreateCategory(CategoryDto categoryDto)
+        { 
+            var findCategory = await _unitOfWork.Category.FindOnlyByCondition(x => x.CategoryName == categoryDto.CategoryName);
+            if (findCategory != null)
+                return null;
+            var category = _mapper.Map<Category>(categoryDto);
+            await _unitOfWork.Category.AddAsync(category);
+            await _unitOfWork.SaveChangesAsync();
+            return categoryDto;
         }
 
         public Task<CategoryDto> DeleteNewsAsync(int id)

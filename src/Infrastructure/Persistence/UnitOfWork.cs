@@ -16,7 +16,8 @@ namespace NewsPaper.src.Infrastructure.Persistence
         // repository field
         private NewsRepository _news;
         private UserRepository _user;
-
+        private SavedRepository _saved;
+        private CategoryRepository _category;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -26,6 +27,10 @@ namespace NewsPaper.src.Infrastructure.Persistence
         public NewsRepository News => _news ??= new NewsRepository(_context);
 
         public UserRepository User => _user ??= new UserRepository(_context);
+
+        public SavedRepository Saved => _saved ??= new SavedRepository(_context);
+
+        public CategoryRepository Category => _category ??= new CategoryRepository(_context);
 
         // transaction management
         public async Task BeginTransactionAsync()

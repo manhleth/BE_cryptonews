@@ -6,8 +6,24 @@
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "categoryDto",
+        "Type": "NewsPaper.src.Application.DTOs.CategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.CategoryController",
@@ -161,22 +177,6 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
-    "Method": "CreateNewsAsync",
-    "RelativePath": "api/News",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "newsDto",
-        "Type": "NewsPaper.src.Application.DTOs.CreateNewsDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
     "Method": "UpdateNewsAsync",
     "RelativePath": "api/News",
     "HttpMethod": "PUT",
@@ -214,6 +214,62 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "CreateNewsAsync",
+    "RelativePath": "api/News/CreateNewPost",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Header",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Content",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Footer",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Links",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TimeReading",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImagesId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
     "Method": "GetNewsByIdAsync",
     "RelativePath": "api/News/GetNewsByIdAsync",
     "HttpMethod": "GET",
@@ -240,39 +296,25 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
-    "Method": "GetSaved",
-    "RelativePath": "api/Saved",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
     "Method": "CreateSaved",
-    "RelativePath": "api/Saved",
+    "RelativePath": "api/Saved/AddOrRemoveSaved",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "s",
+        "Type": "NewsPaper.src.Application.DTOs.SavedDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
-    "Method": "UpdateSaved",
-    "RelativePath": "api/Saved",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
-    "Method": "DeleteSaved",
-    "RelativePath": "api/Saved",
-    "HttpMethod": "DELETE",
+    "Method": "GetListSaved",
+    "RelativePath": "api/Saved/GetYourListSaved",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
@@ -282,11 +324,27 @@
     "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
     "Method": "UpdateUser",
     "RelativePath": "api/User",
-    "HttpMethod": "PUT",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "userUpdate",
+        "Type": "NewsPaper.src.Application.DTOs.UserRegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
@@ -312,7 +370,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
@@ -321,7 +389,23 @@
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "newUser",
+        "Type": "NewsPaper.src.Application.DTOs.UserRegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

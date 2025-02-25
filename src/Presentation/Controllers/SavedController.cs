@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewsPaper.src.Application.DTOs;
+using NewsPaper.src.Application.Features;
 using NewsPaper.src.Application.Services;
 using NewsPaper.src.Domain.Interfaces;
 
@@ -8,7 +11,7 @@ namespace NewsPaper.src.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SavedController : ControllerBase
+    public class SavedController : BaseController<SavedController>
     {
         private readonly SavedService _savedService;
         private readonly ILogger<SavedController> _logger;
@@ -21,25 +24,17 @@ namespace NewsPaper.src.Presentation.Controllers
             _mapper = mapper;
             _savedService = savedService;
         }
-        [HttpGet]
-        public IActionResult GetSaved()
+        [HttpGet("GetYourListSaved")]
+        public async Task<object> GetListSaved()
         {
-            return Ok();
+            var saved = _savedService.GetListSavedByUser(UserIDLogined);
+            return new ResponseData { Data = saved, StatusCode = 1};
         }
-        [HttpPost]
-        public IActionResult CreateSaved()
+        [HttpPost("AddOrRemoveSaved")]
+        public async Task<object> CreateSaved(SavedDto s)
         {
-            return Ok();
-        }
-        [HttpPut]
-        public IActionResult UpdateSaved()
-        {
-            return Ok();
-        }
-        [HttpDelete]
-        public IActionResult DeleteSaved()
-        {
-            return Ok();
+            var newSaved = _savedService.AddOrRemoveSaved(s);
+            return new ResponseData { Data =newSaved, StatusCode = 1 };
         }
     }
 }

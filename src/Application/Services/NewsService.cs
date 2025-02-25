@@ -17,12 +17,12 @@ namespace NewsPaper.src.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<NewsDto> CreateNewsAsync(CreateNewsDto newsDto)
+        public async Task<object> CreateNewsAsync(CreateNewsDto newsDto)
         {
             var news = _mapper.Map<News>(newsDto);
             await _unitOfWork.News.AddAsync(news);
             await _unitOfWork.SaveChangesAsync();
-            return _mapper.Map<NewsDto>(news);
+            return newsDto;
         }
 
         public Task<NewsDto> CreateNewsAsync(NewsDto newsDto)
