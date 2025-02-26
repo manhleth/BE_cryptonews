@@ -44,7 +44,7 @@ namespace NewsPaper.src.Application.Services
                 issuer: _apiOptions.ValidIssuer,
                 audience: _apiOptions.ValidAudience,
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.Add(TimeSpan.FromDays(1)),
                 signingCredentials: creds
             );
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
@@ -83,6 +83,24 @@ namespace NewsPaper.src.Application.Services
                 return findUser;
             }
             return null;
+        }
+
+
+        public async Task<object> DeleteUser(int userId)
+        {
+            var findUser = await _unitOfWork.User.FindOnlyByCondition(User => User.UserId == userId);
+            if (findUser != null)
+            {
+                await _unitOfWork.User.DeleteAsync(findUser);
+                await _unitOfWork.SaveChangesAsync();
+                return findUser;
+            }
+            return null;
+        }
+
+        public async Task<object> GetListUser()
+        {
+            return await _unitOfWork.User.GetAllObject();
         }
     }
     

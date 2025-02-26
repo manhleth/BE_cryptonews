@@ -4,5 +4,7 @@
     {
         public int UserID { get; set; }
         public int NewsID { get; set; }
+
+        public int Status { get; set; } = 1;
     }
 }

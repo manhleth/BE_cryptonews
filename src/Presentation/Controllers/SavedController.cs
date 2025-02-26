@@ -27,13 +27,13 @@ namespace NewsPaper.src.Presentation.Controllers
         [HttpGet("GetYourListSaved")]
         public async Task<object> GetListSaved()
         {
-            var saved = _savedService.GetListSavedByUser(UserIDLogined);
+            var saved = await _savedService.GetListSavedByUser(UserIDLogined);
             return new ResponseData { Data = saved, StatusCode = 1};
         }
         [HttpPost("AddOrRemoveSaved")]
-        public async Task<object> CreateSaved(SavedDto s)
+        public async Task<object> CreateSaved(int newsID)
         {
-            var newSaved = _savedService.AddOrRemoveSaved(s);
+            var newSaved = await _savedService.AddOrRemoveSaved(newsID,UserIDLogined);
             return new ResponseData { Data =newSaved, StatusCode = 1 };
         }
     }

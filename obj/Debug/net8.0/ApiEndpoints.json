@@ -32,28 +32,64 @@
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "categoryID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.CategoryController",
-    "Method": "GetCategories",
-    "RelativePath": "api/Category/GetCategories",
+    "Method": "GetAllCategories",
+    "RelativePath": "api/Category/GetAllCategories",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.CategoryController",
-    "Method": "UpdateCategory",
-    "RelativePath": "api/Category/UpdateCategory",
-    "HttpMethod": "PUT",
+    "Method": "GetCategoryTop5",
+    "RelativePath": "api/Category/GetCategoryTop5",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
@@ -62,8 +98,24 @@
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "s",
+        "Type": "NewsPaper.src.Application.DTOs.ChildrenCategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
@@ -72,145 +124,200 @@
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
-    "Method": "GetChildrenCategories",
-    "RelativePath": "api/ChildrenCategory/GetChildrenCategories",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
-    "Method": "UpdateChildrenCategory",
-    "RelativePath": "api/ChildrenCategory/UpdateChildrenCategory",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
-    "Method": "GetComments",
-    "RelativePath": "api/Comment",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
-    "Method": "CreateComment",
-    "RelativePath": "api/Comment",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
-    "Method": "UpdateComment",
-    "RelativePath": "api/Comment",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
-    "Method": "DeleteComment",
-    "RelativePath": "api/Comment",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.MediaFileController",
-    "Method": "GetMediaFiles",
-    "RelativePath": "api/MediaFile",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.MediaFileController",
-    "Method": "CreateMediaFile",
-    "RelativePath": "api/MediaFile",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.MediaFileController",
-    "Method": "UpdateMediaFile",
-    "RelativePath": "api/MediaFile",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.MediaFileController",
-    "Method": "DeleteMediaFile",
-    "RelativePath": "api/MediaFile",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
-    "Method": "UpdateNewsAsync",
-    "RelativePath": "api/News",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
     "Parameters": [
-      {
-        "Name": "newsDto",
-        "Type": "NewsPaper.src.Application.DTOs.NewsDto",
-        "IsRequired": true
-      },
       {
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
+    "Method": "GetChildrenCategoriesByParenID",
+    "RelativePath": "api/ChildrenCategory/GetChildrenCategoriesByParenID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ParentID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.ChildrenCategoryController",
+    "Method": "GetListChildrenCategory",
+    "RelativePath": "api/ChildrenCategory/GetListChildrenCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "CreateNewComment",
+    "RelativePath": "api/Comment/CreateNewComment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newComment",
+        "Type": "NewsPaper.src.Application.DTOs.CommentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "DeleteComment",
+    "RelativePath": "api/Comment/DeleteComment",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "DeleteCommentByAdmin",
+    "RelativePath": "api/Comment/DeleteCommentByAdmin",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "GetListCommentByNews",
+    "RelativePath": "api/Comment/GetListCommentByNews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newsID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
-    "Method": "DeleteNewsAsync",
-    "RelativePath": "api/News/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "AdminDeleteNews",
+    "RelativePath": "api/News/AdminDelele",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
@@ -270,6 +377,88 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "DeleteNewsAsync",
+    "RelativePath": "api/News/DeleteNewsByID",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "GetAllNews",
+    "RelativePath": "api/News/GetAllNewAdmin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "GetNewestAsycn",
+    "RelativePath": "api/News/GetNewest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "GetNewsByCategory",
+    "RelativePath": "api/News/GetNewsByCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
     "Method": "GetNewsByIdAsync",
     "RelativePath": "api/News/GetNewsByIdAsync",
     "HttpMethod": "GET",
@@ -284,7 +473,78 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "NewsPaper.src.Application.DTOs.NewsDto",
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "UpdateNewsAsync",
+    "RelativePath": "api/News/UpdateNews",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Header",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Content",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Footer",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Links",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TimeReading",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImagesId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -303,9 +563,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "s",
-        "Type": "NewsPaper.src.Application.DTOs.SavedDto",
-        "IsRequired": true
+        "Name": "newsID",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -353,8 +613,44 @@
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
+    "Method": "GetAllUser",
+    "RelativePath": "api/User",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",

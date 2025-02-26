@@ -16,6 +16,11 @@ namespace NewsPaper.src.Application.Mapping
             CreateMap<Saved, SavedDto>();
             CreateMap<News, NewsDto>();
             CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>();
+            CreateMap<CommentDto, Comment>();
+            CreateMap<Comment, ListCommentResponseDto>();
+            CreateMap<ChildrenCategoryDto, ChildrenCategory>();
+            CreateMap<ChildrenCategory, ChildrenCategoryDto>();
         }
     }
 }

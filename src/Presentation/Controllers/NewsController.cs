@@ -26,9 +26,24 @@ namespace NewsPaper.src.Presentation.Controllers
             _newsService = newsService;
         }
         [HttpGet("GetNewsByIdAsync")]
-        public async Task<NewsDto> GetNewsByIdAsync(int id)
+        public async Task<ResponseData> GetNewsByIdAsync(int id)
         {
-            return await _newsService.GetNewsByIdAsync(id);
+            var news = await _newsService.GetNewsByIdAsync(id);
+            return new ResponseData { Data = news, StatusCode = 1 };
+        }
+
+        [HttpGet("GetNewest")]
+        public async Task<ResponseData> GetNewestAsycn()
+        {
+            var news = await _newsService.GetNewestAsycn();
+            return new ResponseData { Data = news, StatusCode = 1 };
+        }
+
+        [HttpGet("GetNewsByCategory")]
+        public async Task<ResponseData> GetNewsByCategory(int category)
+        {
+            var news = await _newsService.GetNewsByCategory(category);
+            return new ResponseData { Data = news, StatusCode = 1 };
         }
 
         [HttpPost("CreateNewPost")]
@@ -45,27 +60,27 @@ namespace NewsPaper.src.Presentation.Controllers
             }
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateNewsAsync([FromBody] NewsDto newsDto, int id)
+        [HttpPut("UpdateNews")]
+        public async Task<ResponseData> UpdateNewsAsync([FromForm] NewsDto newsDto, int id)
         {
             try
             {
-                await _newsService.UpdateNewsAsync(newsDto, id);
-                return Ok();
+                var user = await _newsService.UpdateNewsAsync(newsDto, id);
+                return new ResponseData { Data = user, StatusCode = 1 };
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while updating news");
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return new ResponseData { Data = ex.ToString(), StatusCode = -1 };
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteNewsAsync(int id)
+        [HttpDelete("DeleteNewsByID")]
+        public async Task<object> DeleteNewsAsync(int id)
         {
             try
             {
-                await _newsService.DeleteNewsAsync(id);
+                await _newsService.DeleteNewsAsync(UserIDLogined,id);
                 return Ok();
             }
             catch (Exception ex)
@@ -73,6 +88,28 @@ namespace NewsPaper.src.Presentation.Controllers
                 _logger.LogError(ex, "An error occurred while deleting news");
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
+        }
+        [HttpPost("AdminDelele")]
+        [Authorize(Roles = "1")]
+        public async Task<ResponseData> AdminDeleteNews(int id)
+        {
+            try
+            {
+                var news = await _newsService.DeleteNewsAsync(0, id);
+                return new ResponseData { Data = news, StatusCode = 1 };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting news");
+                return new ResponseData { Data = ex.ToString(), StatusCode = -1 };
+            }
+        }
+        [HttpGet("GetAllNewAdmin")]
+        [Authorize(Roles = "1")]
+        public async Task<ResponseData> GetAllNews()
+        {
+            var news = await _newsService.GetAllNews();
+            return new ResponseData { Data = news, StatusCode = 1 };
         }
     }
 }

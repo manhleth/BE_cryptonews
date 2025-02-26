@@ -1,4 +1,5 @@
-﻿using NewsPaper.src.Infrastructure.Repositories;
+﻿using NewsPaper.src.Domain.Entities;
+using NewsPaper.src.Infrastructure.Repositories;
 
 namespace NewsPaper.src.Domain.Interfaces
 {
@@ -9,6 +10,9 @@ namespace NewsPaper.src.Domain.Interfaces
         UserRepository User { get; }
         SavedRepository Saved { get; }
         CategoryRepository Category { get; }
+
+        CommentRepository Comment { get; }
+        ChildrenCategoryRepository ChildrenCategory { get; }
         // transaction
         Task<int> SaveChangesAsync();
         Task BeginTransactionAsync();
