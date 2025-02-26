@@ -25,24 +25,24 @@ namespace NewsPaper.src.Application.Services
             return categoryDto;
         }
 
-        public Task<CategoryDto> DeleteNewsAsync(int id)
+        public async Task<object> DelteCateGory(int id)
         {
-            throw new NotImplementedException();
+            var category = await _unitOfWork.Category.FindOnlyByCondition(x => x.CategoryId == id);
+            if (category == null)
+                return $"Can't not find category with id: {id}";
+            await _unitOfWork.Category.DeleteAsync(category);
+            await _unitOfWork.SaveChangesAsync();
+            return _mapper.Map<CategoryDto>(category);
         }
 
-        public Task<CategoryDto> GetNewsByIdAsync(int id)
+        public async Task<object> GetTopCategory()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.Category.GetTopNews(5);
         }
 
-        public Task<List<CategoryDto>> SearchNewsAsync()
+        public async Task<object> GetAllCategory()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<CategoryDto> UpdateNewsAsync(CategoryDto newsDto, int id)
-        {
-            throw new NotImplementedException();
+            return await _unitOfWork.Category.GetAllObject();
         }
     }
 }

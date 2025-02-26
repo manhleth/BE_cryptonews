@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NewsPaper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c2ac643db0eff883e96ddf64832af4449ea82d1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0467675b76b168da5d3afcf685220b664caf8dd7")]
 [assembly: System.Reflection.AssemblyProductAttribute("NewsPaper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NewsPaper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -19,19 +19,22 @@ namespace NewsPaper.src.Application.Services
 
         }
 
-        public async Task<object> AddOrRemoveSaved(SavedDto savedDto)
+        public async Task<object> AddOrRemoveSaved(int newsID, int UserID)
         {
-            var checkNews = _newsService.GetNewsByIdAsync(savedDto.NewsID);
+            var checkNews = await _newsService.GetNewsByIdAsync(newsID);
             if (checkNews == null)
             {
                 return "can't find post";
             }
-            var findSavedPost = await _unitOfWork.Saved.FindOnlyByCondition(x => x.UserId == savedDto.UserID && x.NewsId == savedDto.NewsID);
+            var findSavedPost = await _unitOfWork.Saved.FindOnlyByCondition(x => x.UserId == UserID && x.NewsId == newsID);
             if (findSavedPost == null)
             {
-                //SavedDto savedDtos = new SavedDto();
-                //savedDto.UserID = UserID;
-                //savedDto.NewsID = newsID;
+                SavedDto savedDto = new SavedDto
+                {
+                    NewsID = newsID,
+                    UserID = UserID,
+                    Status = 1
+                };
                 var newSavedObject = _mapper.Map<Saved>(savedDto);
                 await _unitOfWork.Saved.AddAsync(newSavedObject);
                 await _unitOfWork.SaveChangesAsync();
@@ -39,9 +42,11 @@ namespace NewsPaper.src.Application.Services
             }
             else
             {
-                findSavedPost.Status = 0;
+                if(findSavedPost.Status == 1)
+                    findSavedPost.Status = 0;
+                findSavedPost.Status = 1;
                 await _unitOfWork.SaveChangesAsync();
-                return "Remove saved post successfully";
+                return "Change saved post status successfully";
             }    
         }
 

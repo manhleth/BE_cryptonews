@@ -17,6 +17,26 @@ namespace NewsPaper.src.Application.Services
             _mapper = mapper;
         }
 
+
+        public async Task<object> GetNewestAsycn()
+        {
+            var news = await _unitOfWork.News.GetTopNews(8);
+            return _mapper.Map<List<NewsDto>>(news);
+        }
+
+        public async Task<object> GetNewsByCategory(int category)
+        {
+            try
+            {
+                var news = await _unitOfWork.News.FindAsync(x => x.CategoryId == category);
+                return _mapper.Map<List<NewsDto>>(news);
+            }
+            catch(Exception ex)
+            {
+                return ex;
+            }
+        }
+
         public async Task<object> CreateNewsAsync(CreateNewsDto newsDto)
         {
             var news = _mapper.Map<News>(newsDto);
@@ -25,59 +45,68 @@ namespace NewsPaper.src.Application.Services
             return newsDto;
         }
 
-        public Task<NewsDto> CreateNewsAsync(NewsDto newsDto)
+        public async Task<object> DeleteNewsAsync(int UserID,int id)
         {
-            throw new NotImplementedException();
-        }
-
-        //public Task<NewsDto> CreateNewsAsync(NewsDto newsDto)
-        //{
-        //    //throw new NotImplementedException();
-        //    var news = _mapper.Map<News>(newsDto);
-        //    await _unitOfWork.News.AddAsync(news);
-        //    await _unitOfWork.SaveChangesAsync();
-        //    return _mapper.Map<NewsDto>(news);
-        //}
-
-        public async Task<NewsDto> DeleteNewsAsync(int id)
-        {
-            var news = await _unitOfWork.News.GetByIdAsync(id);
+            var news = await _unitOfWork.News.FindOnlyByCondition(x => x.UserId == UserID && x.NewsId == id);
             if (news == null)
-                throw new DirectoryNotFoundException($"Can't find news with id {id}");
+                return $"Can't not find news with id: {id}";
+            await _unitOfWork.News.DeleteAsync(news);
+            await _unitOfWork.SaveChangesAsync();
+            return _mapper.Map<NewsDto>(news);
+        }
+        public async Task<object> DeleteNewsAsyncByAdmin(int id)
+        {
+            var news = await _unitOfWork.News.FindOnlyByCondition(x => x.NewsId == id);
+            if (news == null)
+                return $"Can't not find news with id: {id}";
             await _unitOfWork.News.DeleteAsync(news);
             await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<NewsDto>(news);
         }
 
-        public async Task<NewsDto> GetNewsByIdAsync(int id)
+        public async Task<object> GetNewsByIdAsync(int id)
         {
             var news = await _unitOfWork.News.GetByIdAsync(id);
             if (news == null)
-                throw new DirectoryNotFoundException($"Can't find news with id {id}");
+                return $"Can't find news with id {id}";
             return _mapper.Map<NewsDto>(news);
         }
 
-        public Task<List<NewsDto>> SearchNewsAsync()
+        public async Task<object> UpdateNewsAsync(NewsDto newsDto, int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var news = await _unitOfWork.News.GetByIdAsync(id);
+                if (news == null)
+                    throw new DirectoryNotFoundException($"Can't find news with id {id}");
+
+                news.Header = newsDto.Header;
+                news.Title = newsDto.Title;
+                news.Content = newsDto.Content;
+                news.Footer = newsDto.Footer;
+                news.TimeReading = newsDto.TimeReading;
+                news.ModifiedDate = DateTime.UtcNow;
+
+                await _unitOfWork.News.UpdateAsync(news);
+                await _unitOfWork.SaveChangesAsync();
+                return _mapper.Map<NewsDto>(news);
+            }
+            catch(Exception ex)
+            {
+                return ex;
+            }
         }
 
-        public async Task<NewsDto> UpdateNewsAsync(NewsDto newsDto, int id)
+        public async Task<object> GetAllNews()
         {
-            var news = await _unitOfWork.News.GetByIdAsync(id);
-            if (news == null)
-                throw new DirectoryNotFoundException($"Can't find news with id {id}");
-
-            news.Header = newsDto.Header;
-            news.Title = newsDto.Title;
-            news.Content = newsDto.Content;
-            news.Footer = newsDto.Footer;
-            news.TimeReading = newsDto.TimeReading;
-            news.ModifiedDate = DateTime.UtcNow;
-
-            await _unitOfWork.News.UpdateAsync(news);
-            await _unitOfWork.SaveChangesAsync();
-            return _mapper.Map<NewsDto>(news);
+            try
+            {
+                return await _unitOfWork.News.GetAllObject();
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
         }
     }
 }

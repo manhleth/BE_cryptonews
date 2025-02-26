@@ -38,7 +38,6 @@ namespace NewsPaper.src.Presentation.Controllers
             var user = await _userService.UserRegister(newUser);
             return new ResponseData { Data = user, StatusCode = 1 };
         }
-        [Authorize]
         [HttpPost]
         public async Task<ResponseData> UpdateUser(UserRegisterDto userUpdate)
         {
@@ -46,10 +45,19 @@ namespace NewsPaper.src.Presentation.Controllers
             return new ResponseData { Data = user, StatusCode = 1 };
         }
         [HttpDelete]
-        [Authorize]
-        public IActionResult DeleteUser()
+        [Authorize(Roles = "1")]
+        public async Task<ResponseData> DeleteUser(int userID)
         {
-            return Ok();
+            var user = await _userService.DeleteUser(userID);
+            return new ResponseData { Data = user, StatusCode = 1 };
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "1")]
+        public async Task<ResponseData> GetAllUser()
+        {
+            var user = await _userService.GetListUser();
+            return new ResponseData { Data = user, StatusCode = 1 };
         }
     }
 }

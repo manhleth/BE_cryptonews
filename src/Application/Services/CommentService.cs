@@ -1,36 +1,53 @@
 ﻿using AutoMapper;
 using NewsPaper.src.Application.DTOs;
+using NewsPaper.src.Domain.Entities;
 using NewsPaper.src.Domain.Interfaces;
 
 namespace NewsPaper.src.Application.Services
 {
-    public class CommentService 
+    public class CommentService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public Task<CommentDto> CreateNewsAsync(CommentDto newsDto)
+
+        public CommentService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public Task<CommentDto> DeleteNewsAsync(int id)
+        public async Task<object> CreateNewComment(CommentDto newComment, int UserID)
         {
-            throw new NotImplementedException();
+            var comment = _mapper.Map<Comment>(newComment);
+            comment.UserId = UserID;
+            await _unitOfWork.Comment.AddAsync(comment);
+            await _unitOfWork.SaveChangesAsync();
+            return comment;
         }
 
-        public Task<CommentDto> GetNewsByIdAsync(int id)
+        public async Task<object> GetCommentInPost(int newsID)
         {
-            throw new NotImplementedException();
+            var listComment = await _unitOfWork.Comment.FindAsync(x => x.NewsId == newsID);
+            return _mapper.Map<List<ListCommentResponseDto>>(listComment);
         }
 
-        public Task<List<CommentDto>> SearchNewsAsync()
+        public async Task<object> DeleteComment(int commentID, int userId)
         {
-            throw new NotImplementedException();
+            var comment = await _unitOfWork.Comment.FindOnlyByCondition(x => x.CommentId == commentID && x.UserId == userId);
+            if (comment == null)
+                return $"Can't not find comment with id: {commentID}";
+            await _unitOfWork.Comment.DeleteAsync(comment);
+            await _unitOfWork.SaveChangesAsync();
+            return _mapper.Map<CommentDto>(comment);
         }
 
-        public Task<CommentDto> UpdateNewsAsync(CommentDto newsDto, int id)
+        public async Task<object> DeleteCommentByAdmin(int commentID)
         {
-            throw new NotImplementedException();
+            var comment = await _unitOfWork.Comment.FindOnlyByCondition(x => x.CommentId == commentID);
+            await _unitOfWork.Comment.DeleteAsync(comment);
+            await _unitOfWork.SaveChangesAsync();
+            return $"Delete comment {commentID} success";
+
         }
     }
 }

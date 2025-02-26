@@ -92,7 +92,17 @@ builder.Services.AddScoped<MediaFileService>();
 builder.Services.AddScoped<ChildrenCategoryService>();
 builder.Services.AddScoped<SavedService>();
 builder.Services.AddScoped<UserService>();
-
+// allow cors 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 

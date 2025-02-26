@@ -18,6 +18,8 @@ namespace NewsPaper.src.Infrastructure.Persistence
         private UserRepository _user;
         private SavedRepository _saved;
         private CategoryRepository _category;
+        private CommentRepository _comment;
+        private ChildrenCategoryRepository _childrenCategory;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -31,6 +33,10 @@ namespace NewsPaper.src.Infrastructure.Persistence
         public SavedRepository Saved => _saved ??= new SavedRepository(_context);
 
         public CategoryRepository Category => _category ??= new CategoryRepository(_context);
+
+        public CommentRepository Comment => _comment ??= new CommentRepository(_context);
+
+        public ChildrenCategoryRepository ChildrenCategory => _childrenCategory ??= new ChildrenCategoryRepository(_context);
 
         // transaction management
         public async Task BeginTransactionAsync()

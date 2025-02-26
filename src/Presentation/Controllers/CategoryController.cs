@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsPaper.src.Application.DTOs;
@@ -23,12 +24,13 @@ namespace NewsPaper.src.Presentation.Controllers
             _mapper = mapper;
             _categoryService = categoryService;
         }
-        [HttpGet("GetCategories")]
-        public IActionResult GetCategories()
+        [HttpGet("GetAllCategories")]
+        public async Task<ResponseData> GetAllCategories()
         {
-            var categories = _categoryService.SearchNewsAsync();
-            return Ok();
+            var categories = await _categoryService.GetAllCategory();
+            return new ResponseData { Data = categories, StatusCode = 1 };
         }
+        [Authorize(Roles ="1")]
         [HttpPost("CreateCategory")]
         public async Task<ResponseData> CreateCategory(CategoryDto categoryDto)
         {
@@ -42,15 +44,19 @@ namespace NewsPaper.src.Presentation.Controllers
                 return new ResponseData { Data = ex, StatusCode = -1 };
             }
         }
-        [HttpPut("UpdateCategory")]
-        public IActionResult UpdateCategory()
+
+        [HttpGet("GetCategoryTop5")]
+        public async Task<ResponseData> GetCategoryTop5()
         {
-            return Ok();
+            var categories = await _categoryService.GetTopCategory();
+            return new ResponseData { Data = categories, StatusCode = 1 };
         }
+        [Authorize(Roles = "1")]
         [HttpDelete("DeleteCategory")]
-        public IActionResult DeleteCategory()
+        public async Task<ResponseData> DeleteCategory(int categoryID)
         {
-            return Ok();
+            var category = await _categoryService.DelteCateGory(categoryID);
+            return new ResponseData { Data = category, StatusCode = 1 };
         }
 
     }

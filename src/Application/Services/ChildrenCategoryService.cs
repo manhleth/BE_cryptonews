@@ -2,6 +2,7 @@
 using NewsPaper.src.Application.DTOs;
 using NewsPaper.src.Domain.Entities;
 using NewsPaper.src.Domain.Interfaces;
+using System.Formats.Asn1;
 
 namespace NewsPaper.src.Application.Services
 {
@@ -9,25 +10,42 @@ namespace NewsPaper.src.Application.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public Task<ChildrenCategoryDto> CreateNewsAsync(ChildrenCategoryDto newsDto)
+        public ChildrenCategoryService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        public Task<ChildrenCategoryDto> DeleteNewsAsync(int id)
+
+        public async Task<object> CreateNewChildrenCategory(ChildrenCategoryDto childrenCategoryDto)
         {
-            throw new NotImplementedException();
+            var checkChildrenCategory = await _unitOfWork.ChildrenCategory.FindOnlyByCondition(x => x.ChildrenCategoryName == childrenCategoryDto.ChildrenCategoryName);
+            if(checkChildrenCategory != null)
+                return $"Children category name {childrenCategoryDto.ChildrenCategoryName} is already exist";
+            var childrenCategory = _mapper.Map<ChildrenCategory>(childrenCategoryDto);
+            await _unitOfWork.ChildrenCategory.AddAsync(childrenCategory);
+            await _unitOfWork.SaveChangesAsync();
+            return childrenCategoryDto;
         }
-        public Task<ChildrenCategoryDto> GetNewsByIdAsync(int id)
+
+        public async Task<object> GetChildrenCategoryByParentCategory(int parentCategory)
         {
-            throw new NotImplementedException();
+            var childrenCategory = await _unitOfWork.ChildrenCategory.FindAsync(x => x.ParentCategoryId == parentCategory);
+            return _mapper.Map<List<ChildrenCategoryDto>>(childrenCategory);
         }
-        public Task<List<ChildrenCategoryDto>> SearchNewsAsync()
+
+        public async Task<object> DeleteChildrenCategory(int id)
         {
-            throw new NotImplementedException();
+            var childrenCategory = await _unitOfWork.ChildrenCategory.FindOnlyByCondition(x => x.ChildrenCategoryId == id);
+            if (childrenCategory == null)
+                return $"Can't not find children category with id: {id}";
+            await _unitOfWork.ChildrenCategory.DeleteAsync(childrenCategory);
+            await _unitOfWork.SaveChangesAsync();
+            return "Delete children category successfully";
         }
-        public Task<ChildrenCategoryDto> UpdateNewsAsync(ChildrenCategoryDto newsDto, int id)
+
+        public async Task<object> GetAllChildrenCategory()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.ChildrenCategory.GetAllObject();
         }
     }
 }
