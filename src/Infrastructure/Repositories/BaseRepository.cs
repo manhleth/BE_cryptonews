@@ -57,6 +57,10 @@ namespace NewsPaper.src.Infrastructure.Interfaces
             return await _context.Set<T>().OrderByDescending(x => EF.Property<DateTime>(x, "CreatedDate")).Take(top).ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetByConditionTop(Expression<Func<T, bool>> predicate,int top)
+        {
+            return await _context.Set<T>().Where(predicate).OrderByDescending(x => EF.Property<DateTime>(x, "CreatedDate")).Take(top).ToListAsync();
+        }
         public Task<IEnumerable<T>> GetAll(T news)
         {
             throw new NotImplementedException();

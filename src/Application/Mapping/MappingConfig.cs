@@ -8,6 +8,10 @@ namespace NewsPaper.src.Application.Mapping
     {
         public MappingConfig() { 
             CreateMap<NewsDto, News>();
+            //CreateMap<News, ListNewsDtoResponse>();
+            CreateMap<ListNewsDtoResponse, News>();
+            CreateMap<News, YourPostDto>();
+            CreateMap<News, ListNewsDtoResponse>();
             CreateMap<CreateNewsDto, News>();   
             CreateMap<UserDto, User>();
             CreateMap<User, UserDto>();

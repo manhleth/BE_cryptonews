@@ -10,7 +10,7 @@
 
         public string Footer { get; set; }
 
-        public string Links { get; set; }
+        public string? Links { get; set; }
 
         public int? TimeReading { get; set; }
 
@@ -18,6 +18,6 @@
 
         public int? CategoryId { get; set; }
 
-        public int? ImagesId { get; set; }
+        public string? ImagesLink { get; set; }
     }
 }
