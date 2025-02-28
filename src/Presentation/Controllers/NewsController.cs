@@ -33,6 +33,7 @@ namespace NewsPaper.src.Presentation.Controllers
         }
 
         [HttpGet("GetNewest")]
+	[AllowAnonymous]
         public async Task<ResponseData> GetNewestAsycn()
         {
             var news = await _newsService.GetNewestAsycn();
@@ -58,6 +59,22 @@ namespace NewsPaper.src.Presentation.Controllers
             {
                 return new ResponseData { Data = ex, StatusCode = -1 };
             }
+        }
+
+        [HttpGet("GetYourPost")]
+        public async Task<ResponseData> GetYourPost()
+        {
+            var news = await _newsService.GetYourCreatePost(UserIDLogined);
+            return new ResponseData { Data = news, StatusCode = 1 };
+        }
+
+
+        [HttpGet("GetNewsByCategoryTop")]
+        [AllowAnonymous]
+        public async Task<ResponseData> GetNewsByCategoryTop(int category)
+        {
+            var news = await _newsService.GetNewsByCategoryTop(category);
+            return new ResponseData { Data = news, StatusCode = 1 };
         }
 
         [HttpPut("UpdateNews")]
@@ -104,6 +121,7 @@ namespace NewsPaper.src.Presentation.Controllers
                 return new ResponseData { Data = ex.ToString(), StatusCode = -1 };
             }
         }
+        
         [HttpGet("GetAllNewAdmin")]
         [Authorize(Roles = "1")]
         public async Task<ResponseData> GetAllNews()

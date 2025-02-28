@@ -37,7 +37,7 @@ namespace NewsPaper.src.Application.Services
 
         public async Task<object> GetTopCategory()
         {
-            return await _unitOfWork.Category.GetTopNews(5);
+            return await _unitOfWork.Category.GetTopNews(4);
         }
 
         public async Task<object> GetAllCategory()

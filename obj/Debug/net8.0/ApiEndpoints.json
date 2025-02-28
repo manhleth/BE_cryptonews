@@ -73,7 +73,7 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.CategoryController",
-    "Method": "GetCategoryTop5",
+    "Method": "GetCategoryTop4",
     "RelativePath": "api/Category/GetCategoryTop5",
     "HttpMethod": "GET",
     "IsController": true,
@@ -368,8 +368,8 @@
         "IsRequired": false
       },
       {
-        "Name": "ImagesId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "ImagesLink",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -459,6 +459,32 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "GetNewsByCategoryTop",
+    "RelativePath": "api/News/GetNewsByCategoryTop",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
     "Method": "GetNewsByIdAsync",
     "RelativePath": "api/News/GetNewsByIdAsync",
     "HttpMethod": "GET",
@@ -471,6 +497,26 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "GetYourPost",
+    "RelativePath": "api/News/GetYourPost",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "NewsPaper.src.Application.Features.ResponseData",
@@ -512,27 +558,22 @@
         "IsRequired": false
       },
       {
-        "Name": "Links",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "TimeReading",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
-        "Name": "UserId",
-        "Type": "System.Int32",
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "avatar",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "CategoryId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "ImagesId",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
@@ -564,6 +605,22 @@
     "Parameters": [
       {
         "Name": "newsID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.SavedController",
+    "Method": "GetListSavedPostByUser",
+    "RelativePath": "api/Saved/GetListSavedPostByUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryID",
         "Type": "System.Int32",
         "IsRequired": false
       }

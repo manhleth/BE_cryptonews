@@ -36,5 +36,11 @@ namespace NewsPaper.src.Presentation.Controllers
             var newSaved = await _savedService.AddOrRemoveSaved(newsID,UserIDLogined);
             return new ResponseData { Data =newSaved, StatusCode = 1 };
         }
+        [HttpGet("GetListSavedPostByUser")]
+        public async Task<object> GetListSavedPostByUser(int categoryID)
+        {
+            var saved = await _savedService.GetListSavedPostByUser(UserIDLogined, categoryID);
+            return new ResponseData { Data = saved, StatusCode = 1 };
+        }
     }
 }

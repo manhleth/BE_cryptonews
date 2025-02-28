@@ -25,6 +25,7 @@ namespace NewsPaper.src.Presentation.Controllers
             _categoryService = categoryService;
         }
         [HttpGet("GetAllCategories")]
+        [AllowAnonymous]
         public async Task<ResponseData> GetAllCategories()
         {
             var categories = await _categoryService.GetAllCategory();
@@ -46,11 +47,13 @@ namespace NewsPaper.src.Presentation.Controllers
         }
 
         [HttpGet("GetCategoryTop5")]
-        public async Task<ResponseData> GetCategoryTop5()
+        [AllowAnonymous]
+        public async Task<ResponseData> GetCategoryTop4()
         {
             var categories = await _categoryService.GetTopCategory();
             return new ResponseData { Data = categories, StatusCode = 1 };
         }
+        
         [Authorize(Roles = "1")]
         [HttpDelete("DeleteCategory")]
         public async Task<ResponseData> DeleteCategory(int categoryID)

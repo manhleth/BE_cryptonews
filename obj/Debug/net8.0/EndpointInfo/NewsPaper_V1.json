@@ -615,9 +615,8 @@
                     "type": "integer",
                     "format": "int32"
                   },
-                  "ImagesId": {
-                    "type": "integer",
-                    "format": "int32"
+                  "ImagesLink": {
+                    "type": "string"
                   }
                 }
               },
@@ -646,7 +645,7 @@
                 "CategoryId": {
                   "style": "form"
                 },
-                "ImagesId": {
+                "ImagesLink": {
                   "style": "form"
                 }
               }
@@ -656,6 +655,74 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/News/GetYourPost": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/News/GetNewsByCategoryTop": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              }
+            }
           }
         }
       }
@@ -693,22 +760,17 @@
                   "Footer": {
                     "type": "string"
                   },
-                  "Links": {
-                    "type": "string"
-                  },
                   "TimeReading": {
                     "type": "integer",
                     "format": "int32"
                   },
-                  "UserId": {
-                    "type": "integer",
-                    "format": "int32"
+                  "UserName": {
+                    "type": "string"
+                  },
+                  "avatar": {
+                    "type": "string"
                   },
                   "CategoryId": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "ImagesId": {
                     "type": "integer",
                     "format": "int32"
                   }
@@ -727,19 +789,16 @@
                 "Footer": {
                   "style": "form"
                 },
-                "Links": {
-                  "style": "form"
-                },
                 "TimeReading": {
                   "style": "form"
                 },
-                "UserId": {
+                "UserName": {
+                  "style": "form"
+                },
+                "avatar": {
                   "style": "form"
                 },
                 "CategoryId": {
-                  "style": "form"
-                },
-                "ImagesId": {
                   "style": "form"
                 }
               }
@@ -880,6 +939,28 @@
         "parameters": [
           {
             "name": "newsID",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Saved/GetListSavedPostByUser": {
+      "get": {
+        "tags": [
+          "Saved"
+        ],
+        "parameters": [
+          {
+            "name": "categoryID",
             "in": "query",
             "schema": {
               "type": "integer",

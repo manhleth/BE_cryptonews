@@ -54,6 +54,18 @@ namespace NewsPaper.src.Application.Services
         {
             return await _unitOfWork.Saved.FindAsync(x => x.UserId == userId && x.Status == 1);
         }
+
+        public async Task<object> GetListSavedPostByUser(int userId, int categoryID)
+        {
+            var listsaved = await _unitOfWork.Saved.FindAsync(x => x.UserId == userId && x.Status == 1);
+            var listNewsID = listsaved.Select(x => x.NewsId).ToList();
+            var news = await _unitOfWork.News.FindAsync(x => listNewsID.Contains(x.NewsId) && x.CategoryId == categoryID);
+            return new
+            {
+                listSaved = _mapper.Map<List<ListNewsDtoResponse>>(news),
+                total = news.Count()
+            };
+        }
     }
     
 }
