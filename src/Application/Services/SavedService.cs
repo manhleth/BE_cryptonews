@@ -44,9 +44,11 @@ namespace NewsPaper.src.Application.Services
             {
                 if(findSavedPost.Status == 1)
                     findSavedPost.Status = 0;
+                    await _unitOfWork.SaveChangesAsync();
+                    return "Remove saved post status successfully";
                 findSavedPost.Status = 1;
                 await _unitOfWork.SaveChangesAsync();
-                return "Change saved post status successfully";
+                return "Add saved post status successfully";
             }    
         }
 
