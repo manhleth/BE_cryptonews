@@ -3,6 +3,42 @@
   "WorkspaceRootPath": "B:\\NewspaperProject_ManhLe\\NewsPaper\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\services\\savedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\services\\savedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\savedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\savedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\listnewsdtoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\listnewsdtoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\listcommentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\listcommentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\createnewsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\createnewsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\newsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\newsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\userregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\userregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\userdtoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\userdtoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\yourpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\yourpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,28 +51,8 @@
       "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\mapping\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\services\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\services\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\listnewsdtoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\listnewsdtoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\newsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\newsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\services\\savedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\services\\savedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\application\\dtos\\createnewsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\application\\dtos\\createnewsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,10 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\presentation\\controllers\\savedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|solutionrelative:src\\presentation\\controllers\\savedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C3886B05-AE6A-4D60-AF77-1291D034D027}|NewsPaper.csproj|b:\\newspaperproject_manhle\\newspaper\\src\\domain\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -65,28 +77,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "YourPostDto.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\YourPostDto.cs",
-              "RelativeDocumentMoniker": "src\\Application\\DTOs\\YourPostDto.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\YourPostDto.cs",
-              "RelativeToolTip": "src\\Application\\DTOs\\YourPostDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ListCommentResponseDto.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\ListCommentResponseDto.cs",
+              "RelativeDocumentMoniker": "src\\Application\\DTOs\\ListCommentResponseDto.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\ListCommentResponseDto.cs",
+              "RelativeToolTip": "src\\Application\\DTOs\\ListCommentResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T04:31:01.416Z",
+              "WhenOpened": "2025-02-28T06:00:57.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewsDto.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\NewsDto.cs",
+              "RelativeDocumentMoniker": "src\\Application\\DTOs\\NewsDto.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\NewsDto.cs",
+              "RelativeToolTip": "src\\Application\\DTOs\\NewsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T09:28:22.484Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SavedController.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\SavedController.cs",
+              "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\SavedController.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\SavedController.cs",
+              "RelativeToolTip": "src\\Presentation\\Controllers\\SavedController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwCMAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T14:05:44.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "CreateNewsDto.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\CreateNewsDto.cs",
               "RelativeDocumentMoniker": "src\\Application\\DTOs\\CreateNewsDto.cs",
@@ -98,44 +138,81 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
+              "Title": "ListNewsDtoResponse.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\ListNewsDtoResponse.cs",
+              "RelativeDocumentMoniker": "src\\Application\\DTOs\\ListNewsDtoResponse.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\ListNewsDtoResponse.cs",
+              "RelativeToolTip": "src\\Application\\DTOs\\ListNewsDtoResponse.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAwwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T10:27:10.008Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NewsController.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\NewsController.cs",
+              "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\NewsController.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\NewsController.cs",
+              "RelativeToolTip": "src\\Presentation\\Controllers\\NewsController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAUwEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T09:59:49.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "SavedService.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\SavedService.cs",
               "RelativeDocumentMoniker": "src\\Application\\Services\\SavedService.cs",
               "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\SavedService.cs",
               "RelativeToolTip": "src\\Application\\Services\\SavedService.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAYwEIAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAtwDIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T14:05:50.884Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "NewsDto.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\NewsDto.cs",
-              "RelativeDocumentMoniker": "src\\Application\\DTOs\\NewsDto.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\NewsDto.cs",
-              "RelativeToolTip": "src\\Application\\DTOs\\NewsDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T09:28:22.484Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "News.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Domain\\Entities\\News.cs",
-              "RelativeDocumentMoniker": "src\\Domain\\Entities\\News.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Domain\\Entities\\News.cs",
-              "RelativeToolTip": "src\\Domain\\Entities\\News.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T12:46:24.962Z",
+              "WhenOpened": "2025-02-27T14:05:50.884Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
+              "Title": "UserDtoResponse.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\UserDtoResponse.cs",
+              "RelativeDocumentMoniker": "src\\Application\\DTOs\\UserDtoResponse.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\UserDtoResponse.cs",
+              "RelativeToolTip": "src\\Application\\DTOs\\UserDtoResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T06:01:06.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserRegisterDto.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\UserRegisterDto.cs",
+              "RelativeDocumentMoniker": "src\\Application\\DTOs\\UserRegisterDto.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\UserRegisterDto.cs",
+              "RelativeToolTip": "src\\Application\\DTOs\\UserRegisterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T06:01:07.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "YourPostDto.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\YourPostDto.cs",
+              "RelativeDocumentMoniker": "src\\Application\\DTOs\\YourPostDto.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\YourPostDto.cs",
+              "RelativeToolTip": "src\\Application\\DTOs\\YourPostDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T04:31:01.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "NewsService.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Services\\NewsService.cs",
               "RelativeDocumentMoniker": "src\\Application\\Services\\NewsService.cs",
@@ -143,23 +220,24 @@
               "RelativeToolTip": "src\\Application\\Services\\NewsService.cs",
               "ViewState": "AgIAAHQAAAAAAAAAAAAqwIIAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T10:27:23.711Z"
+              "WhenOpened": "2025-02-26T10:27:23.711Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ListNewsDtoResponse.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\ListNewsDtoResponse.cs",
-              "RelativeDocumentMoniker": "src\\Application\\DTOs\\ListNewsDtoResponse.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\DTOs\\ListNewsDtoResponse.cs",
-              "RelativeToolTip": "src\\Application\\DTOs\\ListNewsDtoResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAArAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "News.cs",
+              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Domain\\Entities\\News.cs",
+              "RelativeDocumentMoniker": "src\\Domain\\Entities\\News.cs",
+              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Domain\\Entities\\News.cs",
+              "RelativeToolTip": "src\\Domain\\Entities\\News.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T10:27:10.008Z"
+              "WhenOpened": "2025-02-26T12:46:24.962Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "MappingConfig.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Application\\Mapping\\MappingConfig.cs",
               "RelativeDocumentMoniker": "src\\Application\\Mapping\\MappingConfig.cs",
@@ -167,24 +245,11 @@
               "RelativeToolTip": "src\\Application\\Mapping\\MappingConfig.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T14:15:28.023Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-27T14:15:28.023Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NewsController.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\NewsController.cs",
-              "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\NewsController.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\NewsController.cs",
-              "RelativeToolTip": "src\\Presentation\\Controllers\\NewsController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAADwv0gAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T09:59:49.378Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -194,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "BaseEntity.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Domain\\Entities\\BaseEntity.cs",
               "RelativeDocumentMoniker": "src\\Domain\\Entities\\BaseEntity.cs",
@@ -206,19 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "SavedController.cs",
-              "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\SavedController.cs",
-              "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\SavedController.cs",
-              "ToolTip": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\SavedController.cs",
-              "RelativeToolTip": "src\\Presentation\\Controllers\\SavedController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAAwCkAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T14:05:44.949Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Infrastructure\\Persistence\\AppDbContext.cs",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Persistence\\AppDbContext.cs",
@@ -230,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "UserController.cs",
               "DocumentMoniker": "B:\\NewspaperProject_ManhLe\\NewsPaper\\src\\Presentation\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "src\\Presentation\\Controllers\\UserController.cs",
@@ -239,10 +292,6 @@
               "ViewState": "AgIAACYAAAAAAAAAAAAwwDcAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-28T03:31:47.704Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             }
           ]
         }
