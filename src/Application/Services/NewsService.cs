@@ -38,6 +38,63 @@ namespace NewsPaper.src.Application.Services
             }
         }
 
+
+        public async Task<object> GetNewsByChildrenCategoryID(int childrenCategoryID)
+        {
+            try
+            {
+                var news = await _unitOfWork.News.FindAsync(x => x.ChildrenCategoryId == childrenCategoryID);
+                var listUserID = news.Select(x => x.UserId).Distinct().ToList();
+                var s = listUserID.Count();
+                var listUser = await _unitOfWork.User.FindAsync(x => listUserID.Contains(x.UserId));
+                List<ListNewsDtoResponse> listNews = new List<ListNewsDtoResponse>();
+                foreach (var item in news)
+                {
+                    ListNewsDtoResponse listNewsDtoResponse = new ListNewsDtoResponse();
+                    listNewsDtoResponse.UserName = listUser.Where(x => x.UserId == item.UserId).Select(x => x.Username).FirstOrDefault();
+                    listNewsDtoResponse.UserAvartar = listUser.Where(x => x.UserId == item.UserId).Select(x => x.Avatar).FirstOrDefault();
+                    listNewsDtoResponse.Header = item.Header;
+                    listNewsDtoResponse.Title = item.Title;
+                    listNewsDtoResponse.Links = item.Links;
+                    listNewsDtoResponse.TimeReading = item.TimeReading.ToString() + " minutes to read";
+                    listNewsDtoResponse.ImagesLink = item.ImagesLink;
+                    var hourago = (DateTime.Now.Hour - item.CreatedDate.Value.Hour);
+                    var timeAgo = "";
+                    if (hourago > 0)
+                    {
+                        timeAgo = hourago.ToString() + " Hour ago";
+                    }
+                    else
+                    {
+                        timeAgo = (DateTime.Now.Day - item.CreatedDate.Value.Day).ToString() + " Day ago";
+                    }
+                    listNewsDtoResponse.TimeAgo = timeAgo;
+                    listNewsDtoResponse.NewsID = item.NewsId;
+                    listNews.Add(listNewsDtoResponse);
+                }
+                return listNews;
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+        }
+
+        public async Task<object> FindNewsByKeyWord(string keyword)
+        {
+            try
+            {
+                var news = await _unitOfWork.News.FindAsync(x => x.Title.Contains(keyword) || x.Header.Contains(keyword) || x.Content.Contains(keyword));
+                return _mapper.Map<List<ListNewsDtoResponse>>(news);
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+        }
+
+
+
         public async Task<object> GetNewsByCategoryTop(int category)
         {
             try
@@ -56,6 +113,7 @@ namespace NewsPaper.src.Application.Services
                     listNewsDtoResponse.Title = item.Title;
                     listNewsDtoResponse.Links = item.Links;
                     listNewsDtoResponse.TimeReading = item.TimeReading.ToString() + " minutes to read";
+                    listNewsDtoResponse.ImagesLink = item.ImagesLink;
                     var hourago = (DateTime.Now.Hour - item.CreatedDate.Value.Hour);
                     var timeAgo = "";
                     if(hourago > 0)
@@ -118,7 +176,8 @@ namespace NewsPaper.src.Application.Services
                 TimeReading = news.TimeReading,
                 UserName = user.Username,
                 CategoryId = news.CategoryId,
-                avatar = user.Avatar
+                avatar = user.Avatar,
+                ImagesLink = news.ImagesLink
             };
             if (news == null)
                 return $"Can't find news with id {id}";

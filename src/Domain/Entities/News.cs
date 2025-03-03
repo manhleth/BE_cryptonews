@@ -20,6 +20,8 @@
 
         public int? CategoryId { get; set; }
 
+        public int? ChildrenCategoryId { get; set; }
+
         public string? ImagesLink { get; set; }
     }
 }

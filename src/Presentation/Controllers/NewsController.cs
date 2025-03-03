@@ -112,7 +112,7 @@ namespace NewsPaper.src.Presentation.Controllers
         {
             try
             {
-                var news = await _newsService.DeleteNewsAsync(0, id);
+                var news = await _newsService.DeleteNewsAsyncByAdmin(id);
                 return new ResponseData { Data = news, StatusCode = 1 };
             }
             catch (Exception ex)
@@ -127,6 +127,22 @@ namespace NewsPaper.src.Presentation.Controllers
         public async Task<ResponseData> GetAllNews()
         {
             var news = await _newsService.GetAllNews();
+            return new ResponseData { Data = news, StatusCode = 1 };
+        }
+
+        [HttpGet("GetNewsByChildrenCategoryId")]
+        [AllowAnonymous]
+        public async Task<ResponseData> GetNewsByChildrenCategory(int categoryID)
+        {
+            var news = await _newsService.GetNewsByChildrenCategoryID(categoryID);
+            return new ResponseData { Data = news, StatusCode = 1 };
+        }
+
+        [HttpGet("GetNewsByKeyWord")]
+        [AllowAnonymous]
+        public async Task<ResponseData> GetNewsByKeyWord(string keyWord)
+        {
+            var news = await _newsService.FindNewsByKeyWord(keyWord);
             return new ResponseData { Data = news, StatusCode = 1 };
         }
     }

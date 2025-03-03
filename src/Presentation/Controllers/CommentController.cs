@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsPaper.src.Application.DTOs;
@@ -36,6 +37,15 @@ namespace NewsPaper.src.Presentation.Controllers
             var comment = await _commentService.GetCommentInPost(newsID);
             return new ResponseData { Data = comment, StatusCode = 1 };
         }
+
+        [HttpGet("GetAllCommentAdmin")]
+        [Authorize(Roles = "1")]
+        public async Task<ResponseData> GetAllCommentAdmin()
+        {
+            var comment = await _commentService.GetAllCommentAdmin();
+            return new ResponseData { Data = comment, StatusCode = 1 };
+        }
+
         [HttpDelete("DeleteComment")]
         public async Task<ResponseData> DeleteComment(int commentID)
         {
@@ -43,6 +53,7 @@ namespace NewsPaper.src.Presentation.Controllers
             return new ResponseData { Data = comment, StatusCode = 1 };
         }
         [HttpDelete("DeleteCommentByAdmin")]
+        [Authorize(Roles = "1")]
         public async Task<ResponseData> DeleteCommentByAdmin(int commentID)
         {
             var comment = await _commentService.DeleteCommentByAdmin(commentID);

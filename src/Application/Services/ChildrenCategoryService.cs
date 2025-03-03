@@ -33,6 +33,12 @@ namespace NewsPaper.src.Application.Services
             return _mapper.Map<List<ChildrenCategoryDto>>(childrenCategory);
         }
 
+        public async Task<object> GetAllChildrenCategory()
+        {
+            var da = await _unitOfWork.ChildrenCategory.GetAllObject();
+            return _mapper.Map<List<ChildrenCategoryDto>>(da);
+        }
+
         public async Task<object> DeleteChildrenCategory(int id)
         {
             var childrenCategory = await _unitOfWork.ChildrenCategory.FindOnlyByCondition(x => x.ChildrenCategoryId == id);
@@ -43,9 +49,5 @@ namespace NewsPaper.src.Application.Services
             return "Delete children category successfully";
         }
 
-        public async Task<object> GetAllChildrenCategory()
-        {
-            return await _unitOfWork.ChildrenCategory.GetAllObject();
-        }
     }
 }

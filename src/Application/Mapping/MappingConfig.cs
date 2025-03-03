@@ -25,6 +25,8 @@ namespace NewsPaper.src.Application.Mapping
             CreateMap<Comment, ListCommentResponseDto>();
             CreateMap<ChildrenCategoryDto, ChildrenCategory>();
             CreateMap<ChildrenCategory, ChildrenCategoryDto>();
+            CreateMap<UpdateUserInfor, User>();
+            CreateMap<User, UserLoginResponseDto>();
         }
     }
 }

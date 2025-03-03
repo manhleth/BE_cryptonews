@@ -62,9 +62,36 @@ namespace NewsPaper.src.Application.Services
             var listsaved = await _unitOfWork.Saved.FindAsync(x => x.UserId == userId && x.Status == 1);
             var listNewsID = listsaved.Select(x => x.NewsId).ToList();
             var news = await _unitOfWork.News.FindAsync(x => listNewsID.Contains(x.NewsId) && x.CategoryId == categoryID);
+            List<ListNewsDtoResponse> listNewsSaved = new List<ListNewsDtoResponse>();
+            foreach(var item in news)
+            {
+                ListNewsDtoResponse items = new ListNewsDtoResponse();
+                items.NewsID = item.NewsId;
+                items.Header = item.Header;
+                items.Title = item.Title;
+                items.Links = item.Links;
+                items.TimeReading = item.TimeReading.ToString() + " minutes to read";
+                items.ImagesLink = item.ImagesLink;
+                var hourago = (DateTime.Now.Hour - item.CreatedDate.Value.Hour);
+                var timeAgo = "";
+                if (hourago > 0)
+                {
+                    timeAgo = hourago.ToString() + " Hour ago";
+                }
+                else
+                {
+                    timeAgo = (DateTime.Now.Day - item.CreatedDate.Value.Day).ToString() + " Day ago";
+                }
+                items.TimeAgo = timeAgo;
+                var users = await _unitOfWork.User.FindOnlyByCondition(x => x.UserId == item.UserId);
+                items.UserName = users.Username;
+                items.UserAvartar = users.Avatar;
+                listNewsSaved.Add(items);
+
+            }
             return new
             {
-                listSaved = _mapper.Map<List<ListNewsDtoResponse>>(news),
+                listSaved = listNewsSaved,
                 total = news.Count()
             };
         }

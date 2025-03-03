@@ -27,6 +27,7 @@ namespace NewsPaper.src.Presentation.Controllers
         }
 
         [HttpGet("GetChildrenCategoriesByParenID")]
+        [AllowAnonymous]
         public async Task<ResponseData> GetChildrenCategoriesByParenID(int ParentID)
         {
             var childrenCategories = await _childrenCategoryService.GetChildrenCategoryByParentCategory(ParentID);
@@ -40,6 +41,7 @@ namespace NewsPaper.src.Presentation.Controllers
             return new ResponseData { Data = newChildrenCategory, StatusCode = 1 };
         }
         [HttpGet("GetListChildrenCategory")]
+        [AllowAnonymous]
         public async Task<ResponseData> GetListChildrenCategory()
         {
             var listchildrentCategory = await _childrenCategoryService.GetAllChildrenCategory();

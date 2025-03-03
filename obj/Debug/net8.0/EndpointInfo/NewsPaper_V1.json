@@ -392,6 +392,35 @@
         }
       }
     },
+    "/api/Comment/GetAllCommentAdmin": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Comment/DeleteComment": {
       "delete": {
         "tags": [
@@ -615,6 +644,10 @@
                     "type": "integer",
                     "format": "int32"
                   },
+                  "childrenCategoryId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
                   "ImagesLink": {
                     "type": "string"
                   }
@@ -643,6 +676,9 @@
                   "style": "form"
                 },
                 "CategoryId": {
+                  "style": "form"
+                },
+                "childrenCategoryId": {
                   "style": "form"
                 },
                 "ImagesLink": {
@@ -773,6 +809,9 @@
                   "CategoryId": {
                     "type": "integer",
                     "format": "int32"
+                  },
+                  "ImagesLink": {
+                    "type": "string"
                   }
                 }
               },
@@ -799,6 +838,9 @@
                   "style": "form"
                 },
                 "CategoryId": {
+                  "style": "form"
+                },
+                "ImagesLink": {
                   "style": "form"
                 }
               }
@@ -894,6 +936,83 @@
       "get": {
         "tags": [
           "News"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/News/GetNewsByChildrenCategoryId": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "parameters": [
+          {
+            "name": "categoryID",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/News/GetNewsByKeyWord": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "parameters": [
+          {
+            "name": "keyWord",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -1071,7 +1190,7 @@
         }
       }
     },
-    "/api/User": {
+    "/api/User/UpdateUserInfor": {
       "post": {
         "tags": [
           "User"
@@ -1080,17 +1199,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDto"
+                "$ref": "#/components/schemas/UpdateUserInfor"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDto"
+                "$ref": "#/components/schemas/UpdateUserInfor"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDto"
+                "$ref": "#/components/schemas/UpdateUserInfor"
               }
             }
           }
@@ -1117,7 +1236,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/User/DeleUserByAdmin": {
       "delete": {
         "tags": [
           "User"
@@ -1154,7 +1275,38 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/User/GetAllUserByAdmin": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/GetUserInfor": {
       "get": {
         "tags": [
           "User"
@@ -1210,6 +1362,10 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "childrenCategoryID": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1237,6 +1393,29 @@
           "statusCode": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateUserInfor": {
+        "type": "object",
+        "properties": {
+          "fullname": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

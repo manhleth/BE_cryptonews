@@ -16,5 +16,8 @@
         public string? UserAvartar { get; set; }
 
         public string TimeAgo { get; set; }
+
+        public string ImagesLink { get; set; }
+
     }
 }

@@ -51,7 +51,7 @@ namespace NewsPaper.src.Application.Services
             return new
             {
                 tokenGen = tokenString,
-                user = user
+                user = _mapper.Map<UserLoginResponseDto>(user),
             };
         }
 
@@ -68,16 +68,15 @@ namespace NewsPaper.src.Application.Services
             return user;
         }
 
-        public async Task<object> UpdateUserInfor(UserRegisterDto userUpdate)
+        public async Task<object> UpdateUserInfor(int userID,UpdateUserInfor userUpdate)
         {
-            var findUser = await _unitOfWork.User.FindOnlyByCondition(User => User.Email == userUpdate.Email);
-            if(findUser != null)
+            var findUser = await _unitOfWork.User.FindOnlyByCondition(x => x.UserId == userID);
+            if (findUser != null)
             {
                 findUser.Fullname = userUpdate.Fullname;
                 findUser.Birthday = userUpdate.Birthday;
                 findUser.Avatar = userUpdate.Avatar;
-                findUser.Phonenumber = userUpdate.Phonenumber;
-                findUser.Password = userUpdate.Password;
+                findUser.Phonenumber = userUpdate.PhoneNumber;
                 findUser.ModifiedDate = DateTime.Now;
                 await _unitOfWork.SaveChangesAsync();
                 return findUser;
@@ -102,6 +101,13 @@ namespace NewsPaper.src.Application.Services
         {
             return await _unitOfWork.User.GetAllObject();
         }
+
+        public async Task<object> GetUserInfor(int UserID)
+        {
+            return await _unitOfWork.User.FindOnlyByCondition(x => x.UserId == UserID);
+        }
+
+        
     }
     
 }

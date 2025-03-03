@@ -8,5 +8,9 @@
 
         public string Content { get; set; }
 
+        public string UserFullName { get; set; }
+
+        public string UserAvartar { get; set; }
+
     }
 }

@@ -17,6 +17,7 @@
         public int UserId { get; set; }
 
         public int? CategoryId { get; set; }
+        public int? childrenCategoryId { get; set; }
 
         public string? ImagesLink { get; set; }
     }
