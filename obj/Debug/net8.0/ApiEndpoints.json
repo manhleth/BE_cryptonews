@@ -269,6 +269,26 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
+    "Method": "GetAllCommentAdmin",
+    "RelativePath": "api/Comment/GetAllCommentAdmin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.CommentController",
     "Method": "GetListCommentByNews",
     "RelativePath": "api/Comment/GetListCommentByNews",
     "HttpMethod": "GET",
@@ -364,6 +384,11 @@
       },
       {
         "Name": "CategoryId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "childrenCategoryId",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
@@ -485,6 +510,32 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "GetNewsByChildrenCategory",
+    "RelativePath": "api/News/GetNewsByChildrenCategoryId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
     "Method": "GetNewsByIdAsync",
     "RelativePath": "api/News/GetNewsByIdAsync",
     "HttpMethod": "GET",
@@ -494,6 +545,32 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.NewsController",
+    "Method": "GetNewsByKeyWord",
+    "RelativePath": "api/News/GetNewsByKeyWord",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "keyWord",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -578,6 +655,11 @@
         "IsRequired": false
       },
       {
+        "Name": "ImagesLink",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": false
@@ -639,34 +721,8 @@
   },
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
-    "Method": "UpdateUser",
-    "RelativePath": "api/User",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userUpdate",
-        "Type": "NewsPaper.src.Application.DTOs.UserRegisterDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "NewsPaper.src.Application.Features.ResponseData",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
     "Method": "DeleteUser",
-    "RelativePath": "api/User",
+    "RelativePath": "api/User/DeleUserByAdmin",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -692,11 +748,57 @@
   {
     "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
     "Method": "GetAllUser",
-    "RelativePath": "api/User",
+    "RelativePath": "api/User/GetAllUserByAdmin",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
+    "Method": "GetUserById",
+    "RelativePath": "api/User/GetUserInfor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "NewsPaper.src.Application.Features.ResponseData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsPaper.src.Presentation.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/User/UpdateUserInfor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userUpdate",
+        "Type": "NewsPaper.src.Application.DTOs.UpdateUserInfor",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "NewsPaper.src.Application.Features.ResponseData",

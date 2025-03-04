@@ -16,5 +16,7 @@
 
         public string avatar { get; set; }
         public int? CategoryId { get; set; }
+
+        public string ImagesLink { get; set; }
     }
 }

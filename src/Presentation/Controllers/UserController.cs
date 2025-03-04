@@ -38,13 +38,13 @@ namespace NewsPaper.src.Presentation.Controllers
             var user = await _userService.UserRegister(newUser);
             return new ResponseData { Data = user, StatusCode = 1 };
         }
-        [HttpPost]
-        public async Task<ResponseData> UpdateUser(UserRegisterDto userUpdate)
+        [HttpPost("UpdateUserInfor")]
+        public async Task<ResponseData> UpdateUser(UpdateUserInfor userUpdate)
         {
-            var user = await _userService.UpdateUserInfor(userUpdate);
+            var user = await _userService.UpdateUserInfor(UserIDLogined,userUpdate);
             return new ResponseData { Data = user, StatusCode = 1 };
         }
-        [HttpDelete]
+        [HttpDelete("DeleUserByAdmin")]
         [Authorize(Roles = "1")]
         public async Task<ResponseData> DeleteUser(int userID)
         {
@@ -52,11 +52,18 @@ namespace NewsPaper.src.Presentation.Controllers
             return new ResponseData { Data = user, StatusCode = 1 };
         }
 
-        [HttpGet]
+        [HttpGet("GetAllUserByAdmin")]
         [Authorize(Roles = "1")]
         public async Task<ResponseData> GetAllUser()
         {
             var user = await _userService.GetListUser();
+            return new ResponseData { Data = user, StatusCode = 1 };
+        }
+
+        [HttpGet("GetUserInfor")]
+        public async Task<ResponseData> GetUserById()
+        {
+            var user = await _userService.GetUserInfor(UserIDLogined);
             return new ResponseData { Data = user, StatusCode = 1 };
         }
     }
