@@ -29,7 +29,7 @@ namespace NewsPaper.src.Presentation.Controllers
         public async Task<ResponseData> UserLogin(UserDto userdto)
         {
             var user = await _userService.UserLogin(userdto);
-            return new ResponseData { Data = user, StatusCode = 1 };    
+            return new ResponseData { Data = user, StatusCode = 1 };
         }
         [HttpPost("UserRegister")]
         [AllowAnonymous]
@@ -41,7 +41,7 @@ namespace NewsPaper.src.Presentation.Controllers
         [HttpPost("UpdateUserInfor")]
         public async Task<ResponseData> UpdateUser(UpdateUserInfor userUpdate)
         {
-            var user = await _userService.UpdateUserInfor(UserIDLogined,userUpdate);
+            var user = await _userService.UpdateUserInfor(UserIDLogined, userUpdate);
             return new ResponseData { Data = user, StatusCode = 1 };
         }
         [HttpDelete("DeleUserByAdmin")]

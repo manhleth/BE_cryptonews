@@ -1,25 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "B:\\NewspaperProject_ManhLe\\NewsPaper\\NewsPaper.csproj": {}
+    "E:\\Do an tot nghiep\\CryptoNews\\BE_cryptonews\\NewsPaper.csproj": {}
   },
   "projects": {
-    "B:\\NewspaperProject_ManhLe\\NewsPaper\\NewsPaper.csproj": {
+    "E:\\Do an tot nghiep\\CryptoNews\\BE_cryptonews\\NewsPaper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "B:\\NewspaperProject_ManhLe\\NewsPaper\\NewsPaper.csproj",
+        "projectUniqueName": "E:\\Do an tot nghiep\\CryptoNews\\BE_cryptonews\\NewsPaper.csproj",
         "projectName": "NewsPaper",
-        "projectPath": "B:\\NewspaperProject_ManhLe\\NewsPaper\\NewsPaper.csproj",
-        "packagesPath": "C:\\Users\\van32\\.nuget\\packages\\",
-        "outputPath": "B:\\NewspaperProject_ManhLe\\NewsPaper\\obj\\",
+        "projectPath": "E:\\Do an tot nghiep\\CryptoNews\\BE_cryptonews\\NewsPaper.csproj",
+        "packagesPath": "C:\\Users\\ManhLe\\.nuget\\packages\\",
+        "outputPath": "E:\\Do an tot nghiep\\CryptoNews\\BE_cryptonews\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "A:\\devexpress\\InstallData\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\van32\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Users\\ManhLe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +25,6 @@
           "net8.0"
         ],
         "sources": {
-          "A:\\devexpress\\InstallData\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -47,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -99,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

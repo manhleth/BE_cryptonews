@@ -812,6 +812,17 @@
                   },
                   "ImagesLink": {
                     "type": "string"
+                  },
+                  "Links": {
+                    "type": "string"
+                  },
+                  "UserId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ChildrenCategoryId": {
+                    "type": "integer",
+                    "format": "int32"
                   }
                 }
               },
@@ -841,6 +852,15 @@
                   "style": "form"
                 },
                 "ImagesLink": {
+                  "style": "form"
+                },
+                "Links": {
+                  "style": "form"
+                },
+                "UserId": {
+                  "style": "form"
+                },
+                "ChildrenCategoryId": {
                   "style": "form"
                 }
               }

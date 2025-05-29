@@ -68,7 +68,7 @@ namespace NewsPaper.src.Application.Services
             return user;
         }
 
-        public async Task<object> UpdateUserInfor(int userID,UpdateUserInfor userUpdate)
+        public async Task<object> UpdateUserInfor(int userID, UpdateUserInfor userUpdate)
         {
             var findUser = await _unitOfWork.User.FindOnlyByCondition(x => x.UserId == userID);
             if (findUser != null)
@@ -107,7 +107,7 @@ namespace NewsPaper.src.Application.Services
             return await _unitOfWork.User.FindOnlyByCondition(x => x.UserId == UserID);
         }
 
-        
+
     }
-    
+
 }

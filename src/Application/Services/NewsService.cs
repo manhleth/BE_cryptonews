@@ -32,7 +32,7 @@ namespace NewsPaper.src.Application.Services
                 var news = await _unitOfWork.News.FindAsync(x => x.CategoryId == category);
                 return _mapper.Map<List<NewsDto>>(news);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ex;
             }
@@ -104,7 +104,7 @@ namespace NewsPaper.src.Application.Services
                 var s = listUserID.Count();
                 var listUser = await _unitOfWork.User.FindAsync(x => listUserID.Contains(x.UserId));
                 List<ListNewsDtoResponse> listNews = new List<ListNewsDtoResponse>();
-                foreach(var item in news)
+                foreach (var item in news)
                 {
                     ListNewsDtoResponse listNewsDtoResponse = new ListNewsDtoResponse();
                     listNewsDtoResponse.UserName = listUser.Where(x => x.UserId == item.UserId).Select(x => x.Username).FirstOrDefault();
@@ -116,10 +116,10 @@ namespace NewsPaper.src.Application.Services
                     listNewsDtoResponse.ImagesLink = item.ImagesLink;
                     var hourago = (DateTime.Now.Hour - item.CreatedDate.Value.Hour);
                     var timeAgo = "";
-                    if(hourago > 0)
+                    if (hourago > 0)
                     {
                         timeAgo = hourago.ToString() + " Hour ago";
-                    }    
+                    }
                     else
                     {
                         timeAgo = (DateTime.Now.Day - item.CreatedDate.Value.Day).ToString() + " Day ago";
@@ -144,7 +144,7 @@ namespace NewsPaper.src.Application.Services
             return newsDto;
         }
 
-        public async Task<object> DeleteNewsAsync(int UserID,int id)
+        public async Task<object> DeleteNewsAsync(int UserID, int id)
         {
             var news = await _unitOfWork.News.FindOnlyByCondition(x => x.UserId == UserID && x.NewsId == id);
             if (news == null)
@@ -209,7 +209,7 @@ namespace NewsPaper.src.Application.Services
                 await _unitOfWork.SaveChangesAsync();
                 return _mapper.Map<NewsDto>(news);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ex;
             }

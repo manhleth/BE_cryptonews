@@ -26,6 +26,7 @@ namespace NewsPaper.src.Presentation.Controllers
             _newsService = newsService;
         }
         [HttpGet("GetNewsByIdAsync")]
+        [AllowAnonymous]
         public async Task<ResponseData> GetNewsByIdAsync(int id)
         {
             var news = await _newsService.GetNewsByIdAsync(id);
@@ -33,7 +34,7 @@ namespace NewsPaper.src.Presentation.Controllers
         }
 
         [HttpGet("GetNewest")]
-	[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<ResponseData> GetNewestAsycn()
         {
             var news = await _newsService.GetNewestAsycn();
@@ -97,7 +98,7 @@ namespace NewsPaper.src.Presentation.Controllers
         {
             try
             {
-                await _newsService.DeleteNewsAsync(UserIDLogined,id);
+                await _newsService.DeleteNewsAsync(UserIDLogined, id);
                 return Ok();
             }
             catch (Exception ex)
@@ -121,7 +122,7 @@ namespace NewsPaper.src.Presentation.Controllers
                 return new ResponseData { Data = ex.ToString(), StatusCode = -1 };
             }
         }
-        
+
         [HttpGet("GetAllNewAdmin")]
         [Authorize(Roles = "1")]
         public async Task<ResponseData> GetAllNews()
