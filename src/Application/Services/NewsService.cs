@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿// src/Application/Services/NewsService.cs
+using AutoMapper;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 using NewsPaper.src.Application.DTOs;
 using NewsPaper.src.Domain.Entities;
@@ -18,11 +19,44 @@ namespace NewsPaper.src.Application.Services
             _mapper = mapper;
         }
 
-
+        // SỬA PHƯƠNG THỨC NÀY
         public async Task<object> GetNewestAsycn()
         {
-            var news = await _unitOfWork.News.GetTopNews(8);
-            return _mapper.Map<List<NewsDto>>(news);
+            try
+            {
+                var news = await _unitOfWork.News.GetTopNews(8);
+                var listUserID = news.Select(x => x.UserId).Distinct().ToList();
+                var listUser = await _unitOfWork.User.FindAsync(x => listUserID.Contains(x.UserId));
+
+                List<NewsDto> listNewsDto = new List<NewsDto>();
+                foreach (var item in news)
+                {
+                    var user = listUser.FirstOrDefault(x => x.UserId == item.UserId);
+                    NewsDto newsDto = new NewsDto
+                    {
+                        NewsId = item.NewsId, // Thêm NewsId
+                        Header = item.Header,
+                        Title = item.Title,
+                        Content = item.Content,
+                        Footer = item.Footer,
+                        TimeReading = item.TimeReading,
+                        UserName = user?.Username ?? "Unknown",
+                        avatar = user?.Avatar ?? "",
+                        CategoryId = item.CategoryId,
+                        ImagesLink = item.ImagesLink,
+                        Links = item.Links,
+                        UserId = item.UserId,
+                        ChildrenCategoryId = item.ChildrenCategoryId,
+                        CreatedDate = item.CreatedDate // Thêm CreatedDate
+                    };
+                    listNewsDto.Add(newsDto);
+                }
+                return listNewsDto;
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
         }
 
         public async Task<object> GetNewsByCategory(int category)
