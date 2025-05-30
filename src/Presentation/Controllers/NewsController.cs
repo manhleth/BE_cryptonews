@@ -146,5 +146,32 @@ namespace NewsPaper.src.Presentation.Controllers
             var news = await _newsService.FindNewsByKeyWord(keyWord);
             return new ResponseData { Data = news, StatusCode = 1 };
         }
+        [HttpGet("GetFeaturedNews")]
+        [AllowAnonymous]
+        public async Task<ResponseData> GetFeaturedNews()
+        {
+            var news = await _newsService.GetFeaturedNews();
+            return new ResponseData { Data = news, StatusCode = 1 };
+        }
+
+        [HttpPost("SetFeaturedNews")]
+        [Authorize(Roles = "1")]
+        public async Task<ResponseData> SetFeaturedNews(int newsId, bool isFeatured)
+        {
+            var result = await _newsService.SetFeaturedNews(newsId, isFeatured);
+            if (result is string && result.ToString().Contains("Đã đạt giới hạn"))
+            {
+                return new ResponseData { Data = result, StatusCode = -1 };
+            }
+            return new ResponseData { Data = result, StatusCode = 1 };
+        }
+
+        [HttpPost("UpdateFeaturedOrder")]
+        [Authorize(Roles = "1")]
+        public async Task<ResponseData> UpdateFeaturedOrder([FromBody] List<int> newsIds)
+        {
+            var result = await _newsService.UpdateFeaturedOrder(newsIds);
+            return new ResponseData { Data = result, StatusCode = 1 };
+        }
     }
 }

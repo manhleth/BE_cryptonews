@@ -260,5 +260,120 @@ namespace NewsPaper.src.Application.Services
                 return ex;
             }
         }
+        // Lấy danh sách bài viết nổi bật
+        public async Task<object> GetFeaturedNews()
+        {
+            try
+            {
+                var featuredNews = await _unitOfWork.News.FindAsync(x => x.IsFeatured == true);
+                var orderedNews = featuredNews.OrderBy(x => x.FeaturedOrder ?? 999).Take(3).ToList();
+
+                var listUserID = orderedNews.Select(x => x.UserId).Distinct().ToList();
+                var listUser = await _unitOfWork.User.FindAsync(x => listUserID.Contains(x.UserId));
+
+                List<NewsDto> listNewsDto = new List<NewsDto>();
+                foreach (var item in orderedNews)
+                {
+                    var user = listUser.FirstOrDefault(x => x.UserId == item.UserId);
+                    NewsDto newsDto = new NewsDto
+                    {
+                        NewsId = item.NewsId,
+                        Header = item.Header,
+                        Title = item.Title,
+                        Content = item.Content,
+                        Footer = item.Footer,
+                        TimeReading = item.TimeReading,
+                        UserName = user?.Username ?? "Unknown",
+                        avatar = user?.Avatar ?? "",
+                        CategoryId = item.CategoryId,
+                        ImagesLink = item.ImagesLink,
+                        Links = item.Links,
+                        UserId = item.UserId,
+                        ChildrenCategoryId = item.ChildrenCategoryId,
+                        CreatedDate = item.CreatedDate
+                    };
+                    listNewsDto.Add(newsDto);
+                }
+                return listNewsDto;
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+        }
+
+        // Đặt bài viết là nổi bật
+        public async Task<object> SetFeaturedNews(int newsId, bool isFeatured)
+        {
+            try
+            {
+                var news = await _unitOfWork.News.FindOnlyByCondition(x => x.NewsId == newsId);
+                if (news == null)
+                    return "Không tìm thấy bài viết";
+
+                if (isFeatured)
+                {
+                    // Kiểm tra số lượng bài viết nổi bật hiện tại
+                    var currentFeaturedCount = await _unitOfWork.News.FindAsync(x => x.IsFeatured == true);
+                    if (currentFeaturedCount.Count() >= 3)
+                    {
+                        return "Đã đạt giới hạn 3 bài viết nổi bật. Vui lòng bỏ chọn một bài viết khác trước.";
+                    }
+
+                    // Đặt thứ tự cho bài viết mới
+                    news.FeaturedOrder = currentFeaturedCount.Count() + 1;
+                }
+                else
+                {
+                    news.FeaturedOrder = null;
+                }
+
+                news.IsFeatured = isFeatured;
+                await _unitOfWork.News.UpdateAsync(news);
+                await _unitOfWork.SaveChangesAsync();
+
+                return "Cập nhật thành công";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        // Cập nhật thứ tự bài viết nổi bật
+        public async Task<object> UpdateFeaturedOrder(List<int> newsIds)
+        {
+            try
+            {
+                // Reset tất cả bài viết nổi bật
+                var allFeaturedNews = await _unitOfWork.News.FindAsync(x => x.IsFeatured == true);
+                foreach (var news in allFeaturedNews)
+                {
+                    news.IsFeatured = false;
+                    news.FeaturedOrder = null;
+                    await _unitOfWork.News.UpdateAsync(news);
+                }
+
+                // Cập nhật lại thứ tự mới
+                for (int i = 0; i < newsIds.Count && i < 3; i++)
+                {
+                    var news = await _unitOfWork.News.FindOnlyByCondition(x => x.NewsId == newsIds[i]);
+                    if (news != null)
+                    {
+                        news.IsFeatured = true;
+                        news.FeaturedOrder = i + 1;
+                        await _unitOfWork.News.UpdateAsync(news);
+                    }
+                }
+
+                await _unitOfWork.SaveChangesAsync();
+                return "Cập nhật thứ tự thành công";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
     }
 }

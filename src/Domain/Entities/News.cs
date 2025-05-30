@@ -1,4 +1,5 @@
-﻿namespace NewsPaper.src.Domain.Entities
+﻿
+namespace NewsPaper.src.Domain.Entities
 {
     public class News : BaseEntity
     {
@@ -6,11 +7,11 @@
 
         public string Header { get; set; }
 
-        public string Title { get; set; }   
+        public string Title { get; set; }
 
-        public string Content { get; set; } 
+        public string Content { get; set; }
 
-        public string Footer { get; set; }  
+        public string Footer { get; set; }
 
         public string Links { get; set; }
 
@@ -23,5 +24,9 @@
         public int? ChildrenCategoryId { get; set; }
 
         public string? ImagesLink { get; set; }
+
+        public bool IsFeatured { get; set; } = false;
+
+        public int? FeaturedOrder { get; set; }
     }
 }
