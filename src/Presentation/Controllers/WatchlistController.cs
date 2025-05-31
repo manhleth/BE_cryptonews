@@ -27,22 +27,16 @@ namespace NewsPaper.src.Presentation.Controllers
         }
 
         /// <summary>
-        /// Lấy danh sách watchlist của user
+        /// Lấy danh sách watchlist của user hiện tại
         /// </summary>
-        /// <param name="userId">ID của user</param>
         /// <returns>Danh sách watchlist</returns>
         [HttpGet("GetUserWatchlist")]
         public async Task<ResponseData> GetUserWatchlist(int userId)
         {
             try
             {
-                // Kiểm tra quyền: chỉ user đó hoặc admin mới được xem
-                if (UserIDLogined != userId)
-                {
-                    return new ResponseData { Data = "Unauthorized", StatusCode = -1 };
-                }
-
-                var result = await _watchlistService.GetUserWatchlist(userId);
+                // Sử dụng UserIDLogined thay vì parameter userId để tránh lỗi authorization
+                var result = await _watchlistService.GetUserWatchlist(UserIDLogined);
                 return new ResponseData { Data = result, StatusCode = 1 };
             }
             catch (Exception ex)
@@ -55,7 +49,7 @@ namespace NewsPaper.src.Presentation.Controllers
         /// <summary>
         /// Thêm coin vào watchlist
         /// </summary>
-        /// <param name="userId">ID của user</param>
+        /// <param name="userId">ID của user (sẽ được override bằng UserIDLogined)</param>
         /// <param name="addWatchlistDto">Thông tin coin cần thêm</param>
         /// <returns>Kết quả thêm</returns>
         [HttpPost("AddToWatchlist")]
@@ -63,18 +57,20 @@ namespace NewsPaper.src.Presentation.Controllers
         {
             try
             {
-                // Kiểm tra quyền: chỉ user đó mới được thêm vào watchlist của mình
-                if (UserIDLogined != userId)
+                // Luôn sử dụng UserIDLogined để đảm bảo security
+                var result = await _watchlistService.AddToWatchlist(UserIDLogined, addWatchlistDto);
+
+                // Kiểm tra kết quả trả về
+                if (result is string && result.ToString().Contains("already exists"))
                 {
-                    return new ResponseData { Data = "Unauthorized", StatusCode = -1 };
+                    return new ResponseData { Data = result, StatusCode = 0 }; // Coin đã tồn tại
                 }
 
-                var result = await _watchlistService.AddToWatchlist(userId, addWatchlistDto);
                 return new ResponseData { Data = result, StatusCode = 1 };
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error adding to watchlist");
+                _logger.LogError(ex, "Error adding to watchlist: {Message}", ex.Message);
                 return new ResponseData { Data = ex.Message, StatusCode = -1 };
             }
         }
@@ -90,13 +86,7 @@ namespace NewsPaper.src.Presentation.Controllers
         {
             try
             {
-                // Kiểm tra quyền: chỉ user đó mới được xóa khỏi watchlist của mình
-                if (UserIDLogined != userId)
-                {
-                    return new ResponseData { Data = "Unauthorized", StatusCode = -1 };
-                }
-
-                var result = await _watchlistService.RemoveFromWatchlist(userId, coinId);
+                var result = await _watchlistService.RemoveFromWatchlist(UserIDLogined, coinId);
                 return new ResponseData { Data = result, StatusCode = 1 };
             }
             catch (Exception ex)
@@ -117,13 +107,7 @@ namespace NewsPaper.src.Presentation.Controllers
         {
             try
             {
-                // Kiểm tra quyền: chỉ user đó mới được toggle watchlist của mình
-                if (UserIDLogined != userId)
-                {
-                    return new ResponseData { Data = "Unauthorized", StatusCode = -1 };
-                }
-
-                var result = await _watchlistService.ToggleWatchlist(userId, addWatchlistDto);
+                var result = await _watchlistService.ToggleWatchlist(UserIDLogined, addWatchlistDto);
                 return new ResponseData { Data = result, StatusCode = 1 };
             }
             catch (Exception ex)
@@ -144,13 +128,7 @@ namespace NewsPaper.src.Presentation.Controllers
         {
             try
             {
-                // Kiểm tra quyền: chỉ user đó mới được kiểm tra watchlist của mình
-                if (UserIDLogined != userId)
-                {
-                    return new ResponseData { Data = "Unauthorized", StatusCode = -1 };
-                }
-
-                var result = await _watchlistService.IsInWatchlist(userId, coinId);
+                var result = await _watchlistService.IsInWatchlist(UserIDLogined, coinId);
                 return new ResponseData { Data = result, StatusCode = 1 };
             }
             catch (Exception ex)
@@ -170,13 +148,7 @@ namespace NewsPaper.src.Presentation.Controllers
         {
             try
             {
-                // Kiểm tra quyền: chỉ user đó mới được xem
-                if (UserIDLogined != userId)
-                {
-                    return Unauthorized();
-                }
-
-                var result = await _watchlistService.GetUserWatchlistCoinIds(userId);
+                var result = await _watchlistService.GetUserWatchlistCoinIds(UserIDLogined);
                 return Ok(result);
             }
             catch (Exception ex)

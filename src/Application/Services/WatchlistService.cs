@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using NewsPaper.src.Application.DTOs;
 using NewsPaper.src.Domain.Entities;
 using NewsPaper.src.Domain.Interfaces;
@@ -63,7 +62,9 @@ namespace NewsPaper.src.Application.Services
                     CoinName = addWatchlistDto.CoinName,
                     CoinImage = addWatchlistDto.CoinImage,
                     Order = maxOrder + 1,
-                    IsActive = true
+                    IsActive = true,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now
                 };
 
                 await _unitOfWork.Watchlist.AddAsync(watchlistItem);
@@ -141,7 +142,9 @@ namespace NewsPaper.src.Application.Services
                         CoinName = addWatchlistDto.CoinName,
                         CoinImage = addWatchlistDto.CoinImage,
                         Order = maxOrder + 1,
-                        IsActive = true
+                        IsActive = true,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now
                     };
 
                     await _unitOfWork.Watchlist.AddAsync(watchlistItem);
