@@ -27,6 +27,9 @@ namespace NewsPaper.src.Application.Mapping
             CreateMap<ChildrenCategory, ChildrenCategoryDto>();
             CreateMap<UpdateUserInfor, User>();
             CreateMap<User, UserLoginResponseDto>();
+            CreateMap<WatchlistDto, Watchlist>();
+            CreateMap<Watchlist, WatchlistDto>();
+            CreateMap<AddWatchlistDto, Watchlist>();
         }
     }
 }

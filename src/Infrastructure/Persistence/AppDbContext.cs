@@ -17,7 +17,7 @@ namespace NewsPaper.src.Infrastructure.Persistence
         public DbSet<User> Users { get; set; }
 
         public DbSet<Saved> Saveds { get; set; }
-
+        public DbSet<Watchlist> Watchlists { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -67,6 +67,13 @@ namespace NewsPaper.src.Infrastructure.Persistence
 
             // saved
             modelBuilder.Entity<Saved>().HasKey(s => s.SavedId);
+            //Watchlist Configuration
+            modelBuilder.Entity<Watchlist>().HasKey(w => w.WatchlistId);
+            modelBuilder.Entity<Watchlist>().Property(w => w.CoinId).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<Watchlist>().Property(w => w.CoinSymbol).IsRequired().HasMaxLength(20);
+            modelBuilder.Entity<Watchlist>().Property(w => w.CoinName).IsRequired().HasMaxLength(200);
+            modelBuilder.Entity<Watchlist>().Property(w => w.CoinImage).IsRequired(false).HasMaxLength(500);
+            modelBuilder.Entity<Watchlist>().HasIndex(w => new { w.UserId, w.CoinId }).IsUnique();
         }
     }
 }

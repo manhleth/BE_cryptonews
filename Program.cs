@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("V1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "NewsPaper API", Version = "v1" });
@@ -92,6 +93,7 @@ builder.Services.AddScoped<MediaFileService>();
 builder.Services.AddScoped<ChildrenCategoryService>();
 builder.Services.AddScoped<SavedService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<WatchlistService>();
 // allow cors 
 builder.Services.AddCors(options =>
 {

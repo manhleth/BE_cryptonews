@@ -266,7 +266,7 @@ namespace NewsPaper.src.Application.Services
             try
             {
                 var featuredNews = await _unitOfWork.News.FindAsync(x => x.IsFeatured == true);
-                var orderedNews = featuredNews.OrderBy(x => x.FeaturedOrder ?? 999).Take(3).ToList();
+                var orderedNews = featuredNews.OrderBy(x => x.FeaturedOrder ?? 999).Take(2).ToList();
 
                 var listUserID = orderedNews.Select(x => x.UserId).Distinct().ToList();
                 var listUser = await _unitOfWork.User.FindAsync(x => listUserID.Contains(x.UserId));
@@ -315,9 +315,9 @@ namespace NewsPaper.src.Application.Services
                 {
                     // Kiểm tra số lượng bài viết nổi bật hiện tại
                     var currentFeaturedCount = await _unitOfWork.News.FindAsync(x => x.IsFeatured == true);
-                    if (currentFeaturedCount.Count() >= 3)
+                    if (currentFeaturedCount.Count() >=2)
                     {
-                        return "Đã đạt giới hạn 3 bài viết nổi bật. Vui lòng bỏ chọn một bài viết khác trước.";
+                        return "Đã đạt giới hạn 2 bài viết nổi bật. Vui lòng bỏ chọn một bài viết khác trước.";
                     }
 
                     // Đặt thứ tự cho bài viết mới
@@ -355,7 +355,7 @@ namespace NewsPaper.src.Application.Services
                 }
 
                 // Cập nhật lại thứ tự mới
-                for (int i = 0; i < newsIds.Count && i < 3; i++)
+                for (int i = 0; i < newsIds.Count && i < 2; i++)
                 {
                     var news = await _unitOfWork.News.FindOnlyByCondition(x => x.NewsId == newsIds[i]);
                     if (news != null)

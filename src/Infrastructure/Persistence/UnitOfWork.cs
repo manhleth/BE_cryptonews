@@ -20,6 +20,7 @@ namespace NewsPaper.src.Infrastructure.Persistence
         private CategoryRepository _category;
         private CommentRepository _comment;
         private ChildrenCategoryRepository _childrenCategory;
+        private WatchlistRepository _watchlist;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -38,6 +39,7 @@ namespace NewsPaper.src.Infrastructure.Persistence
 
         public ChildrenCategoryRepository ChildrenCategory => _childrenCategory ??= new ChildrenCategoryRepository(_context);
 
+        public WatchlistRepository Watchlist => _watchlist ??= new WatchlistRepository(_context);
         // transaction management
         public async Task BeginTransactionAsync()
         {
