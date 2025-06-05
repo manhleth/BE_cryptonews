@@ -32,6 +32,7 @@ namespace NewsPaper.src.Presentation.Controllers
         }
 
         [HttpGet("GetListCommentByNews")]
+        [AllowAnonymous]
         public async Task<ResponseData> GetListCommentByNews(int newsID)
         {
             var comment = await _commentService.GetCommentInPost(newsID);

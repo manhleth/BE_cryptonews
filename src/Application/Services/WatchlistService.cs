@@ -33,22 +33,45 @@ namespace NewsPaper.src.Application.Services
             }
         }
 
-        // Thêm coin vào watchlist
+        // FIXED: Thêm coin vào watchlist với proper handling
         public async Task<object> AddToWatchlist(int userId, AddWatchlistDto addWatchlistDto)
         {
             try
             {
-                // Kiểm tra coin đã có trong watchlist chưa
+                // FIXED: Kiểm tra coin đã từng có trong watchlist chưa (bao gồm cả IsActive = false)
                 var existingItem = await _unitOfWork.Watchlist.FindOnlyByCondition(
-                    x => x.UserId == userId && x.CoinId == addWatchlistDto.CoinId && x.IsActive == true
+                    x => x.UserId == userId && x.CoinId == addWatchlistDto.CoinId
                 );
 
                 if (existingItem != null)
                 {
-                    return "Coin already exists in watchlist";
+                    if (existingItem.IsActive)
+                    {
+                        return "Coin already exists in watchlist";
+                    }
+
+                    // FIXED: Nếu coin đã có nhưng IsActive = false, thì reactive lại
+                    existingItem.IsActive = true;
+                    existingItem.ModifiedDate = DateTime.Now;
+
+                    // Update thông tin coin (có thể đã thay đổi)
+                    existingItem.CoinSymbol = addWatchlistDto.CoinSymbol;
+                    existingItem.CoinName = addWatchlistDto.CoinName;
+                    existingItem.CoinImage = addWatchlistDto.CoinImage;
+
+                    // FIXED: Set lại order cho coin được reactive
+                    var currentActiveWatchlist = await _unitOfWork.Watchlist.FindAsync(
+                        x => x.UserId == userId && x.IsActive == true
+                    );
+                    existingItem.Order = currentActiveWatchlist.Count() + 1;
+
+                    await _unitOfWork.Watchlist.UpdateAsync(existingItem);
+                    await _unitOfWork.SaveChangesAsync();
+
+                    return _mapper.Map<WatchlistDto>(existingItem);
                 }
 
-                // Lấy order cao nhất hiện tại
+                // Tạo mới nếu chưa từng có
                 var currentWatchlist = await _unitOfWork.Watchlist.FindAsync(
                     x => x.UserId == userId && x.IsActive == true
                 );
@@ -107,18 +130,19 @@ namespace NewsPaper.src.Application.Services
             }
         }
 
-        // Toggle coin trong watchlist (thêm nếu chưa có, xóa nếu đã có)
+        // IMPROVED: Toggle coin trong watchlist
         public async Task<object> ToggleWatchlist(int userId, AddWatchlistDto addWatchlistDto)
         {
             try
             {
+                // Check cả IsActive = true và false
                 var existingItem = await _unitOfWork.Watchlist.FindOnlyByCondition(
-                    x => x.UserId == userId && x.CoinId == addWatchlistDto.CoinId && x.IsActive == true
+                    x => x.UserId == userId && x.CoinId == addWatchlistDto.CoinId
                 );
 
-                if (existingItem != null)
+                if (existingItem != null && existingItem.IsActive)
                 {
-                    // Nếu đã có thì xóa (soft delete)
+                    // Nếu đang active thì deactivate
                     existingItem.IsActive = false;
                     existingItem.ModifiedDate = DateTime.Now;
                     await _unitOfWork.Watchlist.UpdateAsync(existingItem);
@@ -126,9 +150,36 @@ namespace NewsPaper.src.Application.Services
 
                     return new { action = "removed", message = "Coin removed from watchlist" };
                 }
+                else if (existingItem != null && !existingItem.IsActive)
+                {
+                    // Nếu đã có nhưng inactive thì reactive
+                    existingItem.IsActive = true;
+                    existingItem.ModifiedDate = DateTime.Now;
+
+                    // Update thông tin coin
+                    existingItem.CoinSymbol = addWatchlistDto.CoinSymbol;
+                    existingItem.CoinName = addWatchlistDto.CoinName;
+                    existingItem.CoinImage = addWatchlistDto.CoinImage;
+
+                    // Set lại order
+                    var currentActiveWatchlist = await _unitOfWork.Watchlist.FindAsync(
+                        x => x.UserId == userId && x.IsActive == true
+                    );
+                    existingItem.Order = currentActiveWatchlist.Count() + 1;
+
+                    await _unitOfWork.Watchlist.UpdateAsync(existingItem);
+                    await _unitOfWork.SaveChangesAsync();
+
+                    return new
+                    {
+                        action = "added",
+                        message = "Coin re-added to watchlist",
+                        data = _mapper.Map<WatchlistDto>(existingItem)
+                    };
+                }
                 else
                 {
-                    // Nếu chưa có thì thêm
+                    // Tạo mới nếu chưa từng có
                     var currentWatchlist = await _unitOfWork.Watchlist.FindAsync(
                         x => x.UserId == userId && x.IsActive == true
                     );
@@ -194,6 +245,48 @@ namespace NewsPaper.src.Application.Services
             catch (Exception)
             {
                 return new List<string>();
+            }
+        }
+
+        // BONUS: Method để cleanup duplicate entries (chạy 1 lần để fix data cũ)
+        public async Task<object> CleanupDuplicateEntries(int userId)
+        {
+            try
+            {
+                var allWatchlistItems = await _unitOfWork.Watchlist.FindAsync(
+                    x => x.UserId == userId
+                );
+
+                var groupedItems = allWatchlistItems
+                    .GroupBy(x => x.CoinId)
+                    .Where(g => g.Count() > 1)
+                    .ToList();
+
+                int cleanedCount = 0;
+
+                foreach (var group in groupedItems)
+                {
+                    var items = group.OrderByDescending(x => x.ModifiedDate).ToList();
+                    var keepItem = items.First(); // Giữ item mới nhất
+
+                    // Xóa các items còn lại
+                    for (int i = 1; i < items.Count; i++)
+                    {
+                        await _unitOfWork.Watchlist.DeleteAsync(items[i]);
+                        cleanedCount++;
+                    }
+                }
+
+                if (cleanedCount > 0)
+                {
+                    await _unitOfWork.SaveChangesAsync();
+                }
+
+                return $"Cleaned up {cleanedCount} duplicate entries";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
     }
