@@ -106,7 +106,39 @@ namespace NewsPaper.src.Application.Services
         {
             return await _unitOfWork.User.FindOnlyByCondition(x => x.UserId == UserID);
         }
+        public async Task<object> UpdateUserRole(int userId, int newRoleId)
+        {
+            try
+            {
+                var user = await _unitOfWork.User.FindOnlyByCondition(x => x.UserId == userId);
+                if (user == null)
+                {
+                    return $"User with ID {userId} not found";
+                }
+                if (newRoleId != 1 && newRoleId != 0)
+                {
+                    return "Invalid role ID. Use 1 for Admin, 0 for User";
+                }
 
+                user.RoleId = newRoleId;
+                user.ModifiedDate = DateTime.Now;
+
+                await _unitOfWork.User.UpdateAsync(user);
+                await _unitOfWork.SaveChangesAsync();
+
+                return new
+                {
+                    message = "User role updated successfully",
+                    userId = user.UserId,
+                    newRole = newRoleId == 1 ? "Admin" : "User",
+                    user = _mapper.Map<UserLoginResponseDto>(user)
+                };
+            }
+            catch (Exception ex)
+            {
+                return $"Error updating user role: {ex.Message}";
+            }
+        }
 
     }
 

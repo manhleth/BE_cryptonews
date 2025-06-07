@@ -66,5 +66,32 @@ namespace NewsPaper.src.Presentation.Controllers
             var user = await _userService.GetUserInfor(UserIDLogined);
             return new ResponseData { Data = user, StatusCode = 1 };
         }
+        [HttpPost("SetAdminRole")]
+        [Authorize(Roles = "1")]
+        public async Task<ResponseData> SetAdminRole(int UserID, int RoleChange)
+        {
+            try
+            {
+                int newRoleId = RoleChange;
+
+                var result = await _userService.UpdateUserRole(UserID, newRoleId);
+                if (result is string errorMessage && errorMessage.Contains("not found"))
+                {
+                    return new ResponseData { Data = errorMessage, StatusCode = -1 };
+                }
+
+                if (result is string error && error.Contains("Error"))
+                {
+                    return new ResponseData { Data = error, StatusCode = -1 };
+                }
+
+                return new ResponseData { Data = result, StatusCode = 1 };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while updating user role");
+                return new ResponseData { Data = ex.Message, StatusCode = -1 };
+            }
+        }
     }
 }

@@ -224,13 +224,13 @@ namespace NewsPaper.src.Application.Services
             return _mapper.Map<List<YourPostDto>>(news);
         }
 
-        public async Task<object> UpdateNewsAsync(NewsDto newsDto, int id)
+        public async Task<object> UpdateNewsAsync(NewsDto newsDto)
         {
             try
             {
-                var news = await _unitOfWork.News.GetByIdAsync(id);
+                var news = await _unitOfWork.News.GetByIdAsync(newsDto.NewsId);
                 if (news == null)
-                    throw new DirectoryNotFoundException($"Can't find news with id {id}");
+                    throw new DirectoryNotFoundException($"Can't find news with id {newsDto.NewsId}");
 
                 news.Header = newsDto.Header;
                 news.Title = newsDto.Title;
@@ -238,8 +238,16 @@ namespace NewsPaper.src.Application.Services
                 news.Footer = newsDto.Footer;
                 news.TimeReading = newsDto.TimeReading;
                 news.ModifiedDate = DateTime.UtcNow;
-
-                await _unitOfWork.News.UpdateAsync(news);
+                if(newsDto.Links != null)
+                {
+                    news.Links = newsDto.Links;
+                }
+                else
+                {
+                    news.Links = "";
+                }    
+                  
+                    await _unitOfWork.News.UpdateAsync(news);
                 await _unitOfWork.SaveChangesAsync();
                 return _mapper.Map<NewsDto>(news);
             }

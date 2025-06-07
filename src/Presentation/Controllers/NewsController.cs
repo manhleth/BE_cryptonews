@@ -79,11 +79,11 @@ namespace NewsPaper.src.Presentation.Controllers
         }
 
         [HttpPut("UpdateNews")]
-        public async Task<ResponseData> UpdateNewsAsync([FromForm] NewsDto newsDto, int id)
+        public async Task<ResponseData> UpdateNewsAsync([FromForm] NewsDto newsDto)
         {
             try
             {
-                var user = await _newsService.UpdateNewsAsync(newsDto, id);
+                var user = await _newsService.UpdateNewsAsync(newsDto);
                 return new ResponseData { Data = user, StatusCode = 1 };
             }
             catch (Exception ex)
