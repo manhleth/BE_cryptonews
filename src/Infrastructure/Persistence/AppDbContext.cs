@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// src/Infrastructure/Persistence/AppDbContext.cs
+using Microsoft.EntityFrameworkCore;
 using NewsPaper.src.Domain.Entities;
+
 namespace NewsPaper.src.Infrastructure.Persistence
 {
     public class AppDbContext : DbContext
@@ -7,22 +9,21 @@ namespace NewsPaper.src.Infrastructure.Persistence
         public DbSet<Category> Categories { get; set; }
         public DbSet<ChildrenCategory> ChildrenCategories { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
         public DbSet<MediaFile> MediaFiles { get; set; }
-
         public DbSet<News> News { get; set; }
-
         public DbSet<Role> Roles { get; set; }
-
         public DbSet<User> Users { get; set; }
-
         public DbSet<Saved> Saveds { get; set; }
         public DbSet<Watchlist> Watchlists { get; set; }
+
+        // Thêm DbSet mới
+        public DbSet<Transaction> Transactions { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -63,17 +64,47 @@ namespace NewsPaper.src.Infrastructure.Persistence
             modelBuilder.Entity<User>().Property(u => u.Avatar).IsRequired(false);
             //modelBuilder.Entity<User>().Property(u => u.Birthday).IsRequired(false);
             modelBuilder.Entity<User>().Property(u => u.Fullname).IsRequired(false);
-            modelBuilder.Entity<User>().HasIndex(u => new {u.Email, u.Phonenumber}).IsUnique();
+            modelBuilder.Entity<User>().HasIndex(u => new { u.Email, u.Phonenumber }).IsUnique();
 
             // saved
             modelBuilder.Entity<Saved>().HasKey(s => s.SavedId);
-            //Watchlist Configuration
+
+            // Watchlist Configuration
             modelBuilder.Entity<Watchlist>().HasKey(w => w.WatchlistId);
             modelBuilder.Entity<Watchlist>().Property(w => w.CoinId).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Watchlist>().Property(w => w.CoinSymbol).IsRequired().HasMaxLength(20);
             modelBuilder.Entity<Watchlist>().Property(w => w.CoinName).IsRequired().HasMaxLength(200);
             modelBuilder.Entity<Watchlist>().Property(w => w.CoinImage).IsRequired(false).HasMaxLength(500);
             modelBuilder.Entity<Watchlist>().HasIndex(w => new { w.UserId, w.CoinId }).IsUnique();
+
+            // Transaction configuration
+            modelBuilder.Entity<Transaction>().HasKey(t => t.TransactionId);
+            modelBuilder.Entity<Transaction>().Property(t => t.TransactionHash).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<Transaction>().Property(t => t.FromAddress).IsRequired().HasMaxLength(50);
+            modelBuilder.Entity<Transaction>().Property(t => t.ToAddress).IsRequired().HasMaxLength(50);
+            modelBuilder.Entity<Transaction>().Property(t => t.FromToken).IsRequired().HasMaxLength(20);
+            modelBuilder.Entity<Transaction>().Property(t => t.ToToken).IsRequired().HasMaxLength(20);
+            modelBuilder.Entity<Transaction>().Property(t => t.FromAmount).HasPrecision(28, 18);
+            modelBuilder.Entity<Transaction>().Property(t => t.ToAmount).HasPrecision(28, 18);
+            modelBuilder.Entity<Transaction>().Property(t => t.TransactionType).IsRequired().HasMaxLength(10).HasDefaultValue("SEND");
+            modelBuilder.Entity<Transaction>().Property(t => t.Status).IsRequired().HasMaxLength(10).HasDefaultValue("PENDING");
+            modelBuilder.Entity<Transaction>().Property(t => t.GasUsed).HasPrecision(28, 18);
+            modelBuilder.Entity<Transaction>().Property(t => t.GasPrice).HasPrecision(28, 18);
+
+            // Relationship
+            modelBuilder.Entity<Transaction>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Index for Transaction
+            modelBuilder.Entity<Transaction>()
+                .HasIndex(t => t.TransactionHash)
+                .IsUnique();
+
+            modelBuilder.Entity<Transaction>()
+                .HasIndex(t => t.UserId);
         }
     }
 }

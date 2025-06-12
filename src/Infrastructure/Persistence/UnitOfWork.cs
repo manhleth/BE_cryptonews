@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿// src/Infrastructure/Persistence/UnitOfWork.cs
+using Microsoft.EntityFrameworkCore.Storage;
 using NewsPaper.src.Domain.Interfaces;
 using NewsPaper.src.Infrastructure.Interfaces;
 using NewsPaper.src.Infrastructure.Repositories;
@@ -7,10 +8,9 @@ namespace NewsPaper.src.Infrastructure.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-
         // dependency injection
         private readonly AppDbContext _context;
-        private IDbContextTransaction _transaction;
+        private IDbContextTransaction _dbTransaction; // Đổi tên biến này
         private bool _disposed;
 
         // repository field
@@ -21,29 +21,27 @@ namespace NewsPaper.src.Infrastructure.Persistence
         private CommentRepository _comment;
         private ChildrenCategoryRepository _childrenCategory;
         private WatchlistRepository _watchlist;
+        private TransactionRepository _transactionRepo; // Đổi tên biến này
+
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
         }
-        
+
         // Lazy loading cho các repositories
         public NewsRepository News => _news ??= new NewsRepository(_context);
-
         public UserRepository User => _user ??= new UserRepository(_context);
-
         public SavedRepository Saved => _saved ??= new SavedRepository(_context);
-
         public CategoryRepository Category => _category ??= new CategoryRepository(_context);
-
         public CommentRepository Comment => _comment ??= new CommentRepository(_context);
-
         public ChildrenCategoryRepository ChildrenCategory => _childrenCategory ??= new ChildrenCategoryRepository(_context);
-
         public WatchlistRepository Watchlist => _watchlist ??= new WatchlistRepository(_context);
+        public TransactionRepository Transaction => _transactionRepo ??= new TransactionRepository(_context);
+
         // transaction management
         public async Task BeginTransactionAsync()
         {
-            _transaction = await _context.Database.BeginTransactionAsync();
+            _dbTransaction = await _context.Database.BeginTransactionAsync();
         }
 
         public async Task CommitTransactionAsync()
@@ -51,7 +49,7 @@ namespace NewsPaper.src.Infrastructure.Persistence
             try
             {
                 await _context.SaveChangesAsync();
-                await _transaction?.CommitAsync();
+                await _dbTransaction?.CommitAsync();
             }
             catch
             {
@@ -60,18 +58,18 @@ namespace NewsPaper.src.Infrastructure.Persistence
             }
             finally
             {
-                _transaction?.Dispose();
-                _transaction = null;
+                _dbTransaction?.Dispose();
+                _dbTransaction = null;
             }
         }
 
         public async Task RollbackTransactionAsync()
         {
-            if (_transaction != null)
+            if (_dbTransaction != null)
             {
-                await _transaction.RollbackAsync();
-                _transaction.Dispose();
-                _transaction = null;
+                await _dbTransaction.RollbackAsync();
+                _dbTransaction.Dispose();
+                _dbTransaction = null;
             }
         }
 
@@ -91,7 +89,7 @@ namespace NewsPaper.src.Infrastructure.Persistence
             if (!_disposed && disposing)
             {
                 _context.Dispose();
-                _transaction?.Dispose();
+                _dbTransaction?.Dispose();
             }
             _disposed = true;
         }

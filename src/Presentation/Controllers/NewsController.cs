@@ -29,8 +29,20 @@ namespace NewsPaper.src.Presentation.Controllers
         [AllowAnonymous]
         public async Task<ResponseData> GetNewsByIdAsync(int id)
         {
-            var news = await _newsService.GetNewsByIdAsync(id);
-            return new ResponseData { Data = news, StatusCode = 1 };
+            try
+            {
+                var news = await _newsService.GetNewsByIdAsync(id);
+                if (news is string errorMessage)
+                {
+                    return new ResponseData { Data = errorMessage, StatusCode = -1 };
+                }
+                return new ResponseData { Data = news, StatusCode = 1 };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting news by ID: {Id}", id);
+                return new ResponseData { Data = ex.Message, StatusCode = -1 };
+            }
         }
 
         [HttpGet("GetNewest")]
@@ -79,20 +91,64 @@ namespace NewsPaper.src.Presentation.Controllers
         }
 
         [HttpPut("UpdateNews")]
-        public async Task<ResponseData> UpdateNewsAsync([FromForm] NewsDto newsDto)
+        public async Task<ResponseData> UpdateNewsAsync([FromBody] UpdateNewsDto updateNewsDto)
         {
             try
-            {
-                var user = await _newsService.UpdateNewsAsync(newsDto);
-                return new ResponseData { Data = user, StatusCode = 1 };
+            {     var newsDto = new NewsDto
+                {
+                    NewsId = updateNewsDto.NewsId,
+                    Header = updateNewsDto.Header,
+                    Title = updateNewsDto.Title,
+                    Content = updateNewsDto.Content,
+                    Footer = updateNewsDto.Footer,
+                    TimeReading = updateNewsDto.TimeReading,
+                    Links = updateNewsDto.Links,
+                    CategoryId = updateNewsDto.CategoryId,
+                    ChildrenCategoryId = updateNewsDto.ChildrenCategoryId,
+                    ImagesLink = updateNewsDto.ImagesLink
+                };
+
+                var result = await _newsService.UpdateNewsAsync(newsDto);
+
+                if (result is string errorMessage)
+                {
+                    return new ResponseData { Data = errorMessage, StatusCode = -1 };
+                }
+
+                return new ResponseData { Data = result, StatusCode = 1 };
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while updating news");
-                return new ResponseData { Data = ex.ToString(), StatusCode = -1 };
+                return new ResponseData { Data = ex.Message, StatusCode = -1 };
             }
         }
+        [HttpPut("UpdateNewsForm")]
+        public async Task<ResponseData> UpdateNewsFormAsync([FromForm] UpdateNewsFormDto formDto)
+        {
+            try
+            {
+                var result = await _newsService.UpdateNewsFromForm(
+                    formDto.NewsId,
+                    formDto.Header,
+                    formDto.Title,
+                    formDto.Content,
+                    formDto.Footer,
+                    formDto.TimeReading,
+                    formDto.Links,
+                    formDto.CategoryId,
+                    formDto.ChildrenCategoryId,
+                    formDto.ImagesLink
+                );
 
+                return new ResponseData { Data = result, StatusCode = 1 };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while updating news from form");
+                return new ResponseData { Data = ex.Message, StatusCode = -1 };
+            }
+        }
         [HttpDelete("DeleteNewsByID")]
         public async Task<object> DeleteNewsAsync(int id)
         {

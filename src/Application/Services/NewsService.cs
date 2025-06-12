@@ -197,25 +197,54 @@ namespace NewsPaper.src.Application.Services
             return _mapper.Map<NewsDto>(news);
         }
 
+        // FIXED: GetNewsByIdAsync - Sửa lại toàn bộ logic
         public async Task<object> GetNewsByIdAsync(int id)
         {
-            var news = await _unitOfWork.News.GetByIdAsync(id);
-            var user = await _unitOfWork.User.GetByIdAsync(news.UserId);
-            var newsById = new NewsDto()
+            try
             {
-                Header = news.Header,
-                Title = news.Title,
-                Content = news.Content,
-                Footer = news.Footer,
-                TimeReading = news.TimeReading,
-                UserName = user.Username,
-                CategoryId = news.CategoryId,
-                avatar = user.Avatar,
-                ImagesLink = news.ImagesLink
-            };
-            if (news == null)
-                return $"Can't find news with id {id}";
-            return newsById;
+                // Kiểm tra news trước khi sử dụng
+                var news = await _unitOfWork.News.GetByIdAsync(id);
+                if (news == null)
+                    return $"Can't find news with id {id}";
+
+                // Lấy thông tin user
+                var user = await _unitOfWork.User.GetByIdAsync(news.UserId);
+                if (user == null)
+                    return $"Can't find user for news {id}";
+
+                // Lấy thông tin category nếu có
+                string categoryName = "";
+                if (news.CategoryId.HasValue)
+                {
+                    var category = await _unitOfWork.Category.GetByIdAsync(news.CategoryId.Value);
+                    categoryName = category?.CategoryName ?? "";
+                }
+
+                // Tạo DTO đầy đủ thông tin
+                var newsById = new NewsDto()
+                {
+                    NewsId = news.NewsId, // FIXED: Thêm NewsId
+                    Header = news.Header,
+                    Title = news.Title,
+                    Content = news.Content,
+                    Footer = news.Footer,
+                    TimeReading = news.TimeReading,
+                    UserName = user.Username,
+                    CategoryId = news.CategoryId,
+                    ChildrenCategoryId = news.ChildrenCategoryId, // FIXED: Thêm ChildrenCategoryId
+                    avatar = user.Avatar,
+                    ImagesLink = news.ImagesLink,
+                    Links = news.Links, // FIXED: Thêm Links
+                    UserId = news.UserId,
+                    CreatedDate = news.CreatedDate // FIXED: Thêm CreatedDate
+                };
+
+                return newsById;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         public async Task<object> GetYourCreatePost(int userID)
@@ -224,36 +253,110 @@ namespace NewsPaper.src.Application.Services
             return _mapper.Map<List<YourPostDto>>(news);
         }
 
+        // FIXED: UpdateNewsAsync - Sửa lại toàn bộ logic
         public async Task<object> UpdateNewsAsync(NewsDto newsDto)
         {
             try
             {
+                // Kiểm tra news tồn tại
                 var news = await _unitOfWork.News.GetByIdAsync(newsDto.NewsId);
                 if (news == null)
-                    throw new DirectoryNotFoundException($"Can't find news with id {newsDto.NewsId}");
+                    return $"Can't find news with id {newsDto.NewsId}";
 
-                news.Header = newsDto.Header;
-                news.Title = newsDto.Title;
-                news.Content = newsDto.Content;
-                news.Footer = newsDto.Footer;
-                news.TimeReading = newsDto.TimeReading;
-                news.ModifiedDate = DateTime.UtcNow;
-                if(newsDto.Links != null)
+                // Cập nhật tất cả fields cần thiết
+                news.Header = newsDto.Header ?? news.Header;
+                news.Title = newsDto.Title ?? news.Title;
+                news.Content = newsDto.Content ?? news.Content;
+                news.Footer = newsDto.Footer ?? news.Footer;
+                news.TimeReading = newsDto.TimeReading ?? news.TimeReading;
+                news.Links = newsDto.Links ?? ""; // FIXED: Xử lý Links đúng cách
+                news.ModifiedDate = DateTime.Now; // FIXED: Sử dụng DateTime.Now thay vì UtcNow
+
+                // FIXED: Cập nhật CategoryId và ChildrenCategoryId
+                if (newsDto.CategoryId.HasValue)
                 {
-                    news.Links = newsDto.Links;
+                    news.CategoryId = newsDto.CategoryId.Value;
                 }
-                else
+
+                if (newsDto.ChildrenCategoryId.HasValue)
                 {
-                    news.Links = "";
-                }    
-                  
-                    await _unitOfWork.News.UpdateAsync(news);
+                    news.ChildrenCategoryId = newsDto.ChildrenCategoryId.Value;
+                }
+
+                // FIXED: Cập nhật ImagesLink nếu có
+                if (!string.IsNullOrEmpty(newsDto.ImagesLink))
+                {
+                    news.ImagesLink = newsDto.ImagesLink;
+                }
+
+                await _unitOfWork.News.UpdateAsync(news);
                 await _unitOfWork.SaveChangesAsync();
-                return _mapper.Map<NewsDto>(news);
+
+                // Trả về NewsDto đầy đủ
+                return new NewsDto
+                {
+                    NewsId = news.NewsId,
+                    Header = news.Header,
+                    Title = news.Title,
+                    Content = news.Content,
+                    Footer = news.Footer,
+                    TimeReading = news.TimeReading,
+                    Links = news.Links,
+                    CategoryId = news.CategoryId,
+                    ChildrenCategoryId = news.ChildrenCategoryId,
+                    ImagesLink = news.ImagesLink,
+                    UserId = news.UserId,
+                    CreatedDate = news.CreatedDate
+                };
             }
             catch (Exception ex)
             {
-                return ex;
+                return ex.Message;
+            }
+        }
+
+        // FIXED: Thêm method UpdateNewsFromForm để xử lý FormData
+        public async Task<object> UpdateNewsFromForm(int newsId, string header, string title, string content,
+            string footer, int? timeReading, string links, int? categoryId, int? childrenCategoryId, string imagesLink)
+        {
+            try
+            {
+                var news = await _unitOfWork.News.GetByIdAsync(newsId);
+                if (news == null)
+                    return $"Can't find news with id {newsId}";
+
+                // Cập nhật tất cả fields
+                news.Header = header ?? news.Header;
+                news.Title = title ?? news.Title;
+                news.Content = content ?? news.Content;
+                news.Footer = footer ?? news.Footer;
+                news.TimeReading = timeReading ?? news.TimeReading;
+                news.Links = links ?? "";
+                news.ModifiedDate = DateTime.Now;
+
+                if (categoryId.HasValue && categoryId.Value > 0)
+                {
+                    news.CategoryId = categoryId.Value;
+                }
+
+                if (childrenCategoryId.HasValue && childrenCategoryId.Value > 0)
+                {
+                    news.ChildrenCategoryId = childrenCategoryId.Value;
+                }
+
+                if (!string.IsNullOrEmpty(imagesLink))
+                {
+                    news.ImagesLink = imagesLink;
+                }
+
+                await _unitOfWork.News.UpdateAsync(news);
+                await _unitOfWork.SaveChangesAsync();
+
+                return "News updated successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
 
@@ -261,13 +364,48 @@ namespace NewsPaper.src.Application.Services
         {
             try
             {
-                return await _unitOfWork.News.GetAllObject();
+                var newsList = await _unitOfWork.News.GetAllObject();
+                var listUserID = newsList.Select(x => x.UserId).Distinct().ToList();
+                var listUser = await _unitOfWork.User.FindAsync(x => listUserID.Contains(x.UserId));
+                var listCategoryID = newsList.Where(x => x.CategoryId.HasValue).Select(x => x.CategoryId.Value).Distinct().ToList();
+                var listCategory = await _unitOfWork.Category.FindAsync(x => listCategoryID.Contains(x.CategoryId));
+
+                List<object> result = new List<object>();
+                foreach (var item in newsList.OrderByDescending(x => x.CreatedDate))
+                {
+                    var user = listUser.FirstOrDefault(x => x.UserId == item.UserId);
+                    var category = listCategory.FirstOrDefault(x => x.CategoryId == item.CategoryId);
+
+                    result.Add(new
+                    {
+                        newsId = item.NewsId,
+                        header = item.Header,
+                        title = item.Title,
+                        content = item.Content,
+                        footer = item.Footer,
+                        timeReading = item.TimeReading,
+                        links = item.Links,
+                        imagesLink = item.ImagesLink,
+                        categoryId = item.CategoryId,
+                        categoryName = category?.CategoryName ?? "",
+                        childrenCategoryId = item.ChildrenCategoryId,
+                        userId = item.UserId,
+                        userName = user?.Username ?? "Unknown",
+                        createdDate = item.CreatedDate,
+                        modifiedDate = item.ModifiedDate,
+                        isFeatured = item.IsFeatured,
+                        featuredOrder = item.FeaturedOrder
+                    });
+                }
+
+                return result;
             }
             catch (Exception ex)
             {
                 return ex;
             }
         }
+
         // Lấy danh sách bài viết nổi bật
         public async Task<object> GetFeaturedNews()
         {
@@ -323,7 +461,7 @@ namespace NewsPaper.src.Application.Services
                 {
                     // Kiểm tra số lượng bài viết nổi bật hiện tại
                     var currentFeaturedCount = await _unitOfWork.News.FindAsync(x => x.IsFeatured == true);
-                    if (currentFeaturedCount.Count() >=2)
+                    if (currentFeaturedCount.Count() >= 2)
                     {
                         return "Đã đạt giới hạn 2 bài viết nổi bật. Vui lòng bỏ chọn một bài viết khác trước.";
                     }

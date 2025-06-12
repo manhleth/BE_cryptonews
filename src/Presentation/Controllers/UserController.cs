@@ -93,5 +93,142 @@ namespace NewsPaper.src.Presentation.Controllers
                 return new ResponseData { Data = ex.Message, StatusCode = -1 };
             }
         }
+
+
+        [HttpPost("Request-forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> RequestForgotPassword(string email)
+        {
+            try
+            {
+                var checkToken = await _userService.RequestForgotPassword(email);
+                if (checkToken == null)
+                    return BadRequest("Email không tồn tại");
+                // Lưu token vào cookie
+                Response.Cookies.Append("reset_token", checkToken, new CookieOptions
+                {
+                    HttpOnly = false,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTimeOffset.UtcNow.AddMinutes(15) // Token có hiệu lực trong 15 phút
+                });
+                return Ok(new { message = "Email đã được gửi" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("verify-otp")]
+        [AllowAnonymous]
+        public async Task<IActionResult> VerifyOTP([FromBody] OTPVerificationModel dto)
+        {
+            try
+            {
+                string token = Request.Cookies["reset_token"];
+                var isValid = _userService.VerifyOTP(token, dto.OTP);
+                if (isValid)
+                {
+                    string resetToken = _userService.GeneratePasswordResetToken(token);
+                    Response.Cookies.Append("password_reset_token", resetToken, new CookieOptions
+                    {
+                        HttpOnly = false,
+                        Secure = true,
+                        SameSite = SameSiteMode.None,
+                        MaxAge = TimeSpan.FromMinutes(15)
+                    });
+                    return Ok(new { message = "Mã OTP hợp lệ" });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Mã OTP không hợp lệ" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel dto)
+        {
+            try
+            {
+                string resetToken = Request.Cookies["password_reset_token"];
+                var email = _userService.ValidateAndGetEmailFromToken(resetToken);
+                if (email == null)
+                    return BadRequest("Token không hợp lệ");
+                var result = await _userService.ResetPassword(email, dto);
+                if (result)
+                {
+                    Response.Cookies.Delete("reset_token", new CookieOptions
+                    {
+                        Domain = "localhost",
+                        Path = "/",
+                        SameSite = SameSiteMode.None,
+                        HttpOnly = false,
+                        Secure = true,
+                    });
+                    Response.Cookies.Delete("password_reset_token", new CookieOptions
+                    {
+                        Domain = "localhost",
+                        Path = "/",
+                        SameSite = SameSiteMode.None,
+                        HttpOnly = false,
+                        Secure = true,
+                    });
+                    return Ok(new { message = "Đặt lại mật khẩu thành công" });
+                }
+                else
+                    return BadRequest("Đặt lại mật khẩu thất bại");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("ChangePassword")]
+        public async Task<ResponseData> ChangePassword([FromBody] ChangePasswordDto changePasswordDto)
+        {
+            try
+            {
+                var result = await _userService.ChangePassword(UserIDLogined, changePasswordDto);
+
+                // Check if result contains success property
+                if (result is object resultObj)
+                {
+                    var resultType = resultObj.GetType();
+                    var successProperty = resultType.GetProperty("success");
+
+                    if (successProperty != null)
+                    {
+                        bool success = (bool)successProperty.GetValue(resultObj);
+                        if (success)
+                        {
+                            return new ResponseData { Data = result, StatusCode = 1 };
+                        }
+                        else
+                        {
+                            return new ResponseData { Data = result, StatusCode = -1 };
+                        }
+                    }
+                }
+
+                return new ResponseData { Data = result, StatusCode = 1 };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while changing password");
+                return new ResponseData
+                {
+                    Data = new { success = false, message = "Có lỗi xảy ra khi đổi mật khẩu" },
+                    StatusCode = -1
+                };
+            }
+        }
+
     }
 }

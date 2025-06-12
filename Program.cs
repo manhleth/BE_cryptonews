@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NewsPaper.src.Application.Features;
 using NewsPaper.src.Application.Mapping;
 using NewsPaper.src.Application.Services;
 using NewsPaper.src.Domain.Interfaces;
 using NewsPaper.src.Domain.ValueObjects;
 using NewsPaper.src.Infrastructure.Persistence;
+using NewsPaper.src.Presentation.Controllers; // Thêm namespace cho controller
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,6 +84,10 @@ var mapperConfig = new MapperConfiguration(mc =>
 
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Smtp"));
+builder.Services.Configure<OTPConfiguration>(builder.Configuration.GetSection("Otp"));
+builder.Services.AddTransient<EmailService>();
+builder.Services.AddScoped<OTPService>();
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -94,16 +100,21 @@ builder.Services.AddScoped<ChildrenCategoryService>();
 builder.Services.AddScoped<SavedService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<WatchlistService>();
+
+// Thêm TransactionService vào DI container
+builder.Services.AddScoped<TransactionService>();
+
 // allow cors 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-        });
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials() // Quan trọng!
+              .SetIsOriginAllowed(_ => true); // Có thể cần thiết trong môi trường dev
+    });
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -116,8 +127,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowFrontend");
 
-app.UseCors();
 
 app.UseStaticFiles();
 

@@ -14,10 +14,13 @@ namespace NewsPaper.src.Domain.Interfaces
         CommentRepository Comment { get; }
         ChildrenCategoryRepository ChildrenCategory { get; }
         WatchlistRepository Watchlist { get; }
+        TransactionRepository Transaction { get; }
         // transaction
         Task<int> SaveChangesAsync();
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();
         Task RollbackTransactionAsync();
+
+
     }
 }
