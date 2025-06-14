@@ -21,6 +21,9 @@ namespace NewsPaper.src.Domain.Interfaces
         Task CommitTransactionAsync();
         Task RollbackTransactionAsync();
 
-
+        PageViewRepository PageView { get; }
+        UserActivityRepository UserActivity { get; }
+        NewsAnalyticsRepository NewsAnalytics { get; }
+        DailyStatsRepository DailyStats { get; }
     }
 }

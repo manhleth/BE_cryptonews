@@ -18,6 +18,11 @@ namespace NewsPaper.src.Infrastructure.Persistence
 
         // Thêm DbSet mới
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<PageView> PageViews { get; set; }
+        public DbSet<UserActivity> UserActivities { get; set; }
+        public DbSet<NewsAnalytics> NewsAnalytics { get; set; }
+        public DbSet<DailyStats> DailyStats { get; set; }
+
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -105,6 +110,67 @@ namespace NewsPaper.src.Infrastructure.Persistence
 
             modelBuilder.Entity<Transaction>()
                 .HasIndex(t => t.UserId);
+            // PageView Configuration
+            modelBuilder.Entity<PageView>().HasKey(p => p.PageViewId);
+            modelBuilder.Entity<PageView>().Property(p => p.PageUrl).IsRequired().HasMaxLength(500);
+            modelBuilder.Entity<PageView>().Property(p => p.PageTitle).IsRequired().HasMaxLength(500);
+            modelBuilder.Entity<PageView>().Property(p => p.SessionDuration).HasDefaultValue(0);
+            modelBuilder.Entity<PageView>().HasIndex(p => new { p.UserId, p.NewsId, p.ViewDate });
+
+            // UserActivity Configuration  
+            modelBuilder.Entity<UserActivity>().HasKey(u => u.UserActivityId);
+            modelBuilder.Entity<UserActivity>().Property(u => u.ActivityType).IsRequired().HasMaxLength(50);
+            modelBuilder.Entity<UserActivity>().HasIndex(u => new { u.UserId, u.ActivityDate });
+            modelBuilder.Entity<UserActivity>().HasIndex(u => u.ActivityType);
+
+            // NewsAnalytics Configuration
+            modelBuilder.Entity<NewsAnalytics>().HasKey(n => n.NewsAnalyticsId);
+            modelBuilder.Entity<NewsAnalytics>().Property(n => n.ViewCount).HasDefaultValue(0);
+            modelBuilder.Entity<NewsAnalytics>().Property(n => n.UniqueViewCount).HasDefaultValue(0);
+            modelBuilder.Entity<NewsAnalytics>().Property(n => n.SaveCount).HasDefaultValue(0);
+            modelBuilder.Entity<NewsAnalytics>().Property(n => n.CommentCount).HasDefaultValue(0);
+            modelBuilder.Entity<NewsAnalytics>().Property(n => n.AverageReadTime).HasPrecision(10, 2).HasDefaultValue(0);
+            modelBuilder.Entity<NewsAnalytics>().HasIndex(n => n.NewsId).IsUnique();
+
+            // DailyStats Configuration
+            modelBuilder.Entity<DailyStats>().HasKey(d => d.DailyStatsId);
+            modelBuilder.Entity<DailyStats>().Property(d => d.TotalPageViews).HasDefaultValue(0);
+            modelBuilder.Entity<DailyStats>().Property(d => d.UniqueVisitors).HasDefaultValue(0);
+            modelBuilder.Entity<DailyStats>().Property(d => d.NewUsers).HasDefaultValue(0);
+            modelBuilder.Entity<DailyStats>().Property(d => d.NewPosts).HasDefaultValue(0);
+            modelBuilder.Entity<DailyStats>().Property(d => d.NewComments).HasDefaultValue(0);
+            modelBuilder.Entity<DailyStats>().HasIndex(d => d.Date).IsUnique();
+            // Relationships
+            modelBuilder.Entity<PageView>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<PageView>()
+                .HasOne<News>()
+                .WithMany()
+                .HasForeignKey(p => p.NewsId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<UserActivity>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserActivity>()
+                .HasOne<News>()
+                .WithMany()
+                .HasForeignKey(u => u.RelatedNewsId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<NewsAnalytics>()
+                .HasOne<News>()
+                .WithMany()
+                .HasForeignKey(n => n.NewsId)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

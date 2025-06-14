@@ -22,7 +22,10 @@ namespace NewsPaper.src.Infrastructure.Persistence
         private ChildrenCategoryRepository _childrenCategory;
         private WatchlistRepository _watchlist;
         private TransactionRepository _transactionRepo; // Đổi tên biến này
-
+        private PageViewRepository _pageView;
+        private UserActivityRepository _userActivity;
+        private NewsAnalyticsRepository _newsAnalytics;
+        private DailyStatsRepository _dailyStats;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -37,6 +40,10 @@ namespace NewsPaper.src.Infrastructure.Persistence
         public ChildrenCategoryRepository ChildrenCategory => _childrenCategory ??= new ChildrenCategoryRepository(_context);
         public WatchlistRepository Watchlist => _watchlist ??= new WatchlistRepository(_context);
         public TransactionRepository Transaction => _transactionRepo ??= new TransactionRepository(_context);
+        public PageViewRepository PageView => _pageView ??= new PageViewRepository(_context);
+        public UserActivityRepository UserActivity => _userActivity ??= new UserActivityRepository(_context);
+        public NewsAnalyticsRepository NewsAnalytics => _newsAnalytics ??= new NewsAnalyticsRepository(_context);
+        public DailyStatsRepository DailyStats => _dailyStats ??= new DailyStatsRepository(_context);
 
         // transaction management
         public async Task BeginTransactionAsync()

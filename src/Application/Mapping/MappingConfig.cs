@@ -61,6 +61,14 @@ namespace NewsPaper.src.Application.Mapping
                     dest => dest.Status,
                     opt => opt.MapFrom(src => "PENDING")
                 );
+            CreateMap<TrackPageViewDto, PageView>();
+            CreateMap<PageView, PageViewResponseDto>();
+            CreateMap<TrackActivityDto, UserActivity>();
+            CreateMap<UserActivity, UserActivityResponseDto>()
+                .ForMember(dest => dest.TimeAgo, opt => opt.Ignore());
+            CreateMap<NewsAnalytics, NewsAnalyticsDto>()
+                .ForMember(dest => dest.NewsTitle, opt => opt.Ignore());
+            CreateMap<DailyStats, DailyStatsDto>();
         }
     }
 }

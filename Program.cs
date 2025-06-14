@@ -100,8 +100,7 @@ builder.Services.AddScoped<ChildrenCategoryService>();
 builder.Services.AddScoped<SavedService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<WatchlistService>();
-
-// Thêm TransactionService vào DI container
+builder.Services.AddScoped<AnalyticsService>();
 builder.Services.AddScoped<TransactionService>();
 
 // allow cors 
