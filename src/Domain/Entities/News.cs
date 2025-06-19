@@ -11,7 +11,7 @@ namespace NewsPaper.src.Domain.Entities
 
         public string Content { get; set; }
 
-        public string Footer { get; set; }
+        public string? Footer { get; set; }
 
         public string Links { get; set; }
 

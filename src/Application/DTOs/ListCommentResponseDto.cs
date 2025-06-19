@@ -11,6 +11,7 @@
         public string UserFullName { get; set; }
 
         public string UserAvartar { get; set; }
-
+        public int NewsId { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class NewsDto
     {
-        public int NewsId { get; set; } // Thêm trường này
+        public int NewsId { get; set; }
         public string? Header { get; set; }
         public string? Title { get; set; }
         public string? Content { get; set; }
@@ -15,6 +15,6 @@
         public string? Links { get; set; }
         public int UserId { get; set; }
         public int? ChildrenCategoryId { get; set; }
-        public DateTime? CreatedDate { get; set; } // Thêm trường này
+        public DateTime? CreatedDate { get; set; }
     }
 }

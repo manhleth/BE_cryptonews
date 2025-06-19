@@ -173,6 +173,10 @@ namespace NewsPaper.src.Application.Services
         public async Task<object> CreateNewsAsync(CreateNewsDto newsDto)
         {
             var news = _mapper.Map<News>(newsDto);
+            if (string.IsNullOrEmpty(newsDto.Footer) || newsDto.Footer == "null")
+            {
+                news.Footer = null;
+            }
             await _unitOfWork.News.AddAsync(news);
             await _unitOfWork.SaveChangesAsync();
             return newsDto;
@@ -258,21 +262,28 @@ namespace NewsPaper.src.Application.Services
         {
             try
             {
-                // Kiểm tra news tồn tại
                 var news = await _unitOfWork.News.GetByIdAsync(newsDto.NewsId);
                 if (news == null)
                     return $"Can't find news with id {newsDto.NewsId}";
 
-                // Cập nhật tất cả fields cần thiết
                 news.Header = newsDto.Header ?? news.Header;
                 news.Title = newsDto.Title ?? news.Title;
                 news.Content = newsDto.Content ?? news.Content;
-                news.Footer = newsDto.Footer ?? news.Footer;
-                news.TimeReading = newsDto.TimeReading ?? news.TimeReading;
-                news.Links = newsDto.Links ?? ""; // FIXED: Xử lý Links đúng cách
-                news.ModifiedDate = DateTime.Now; // FIXED: Sử dụng DateTime.Now thay vì UtcNow
 
-                // FIXED: Cập nhật CategoryId và ChildrenCategoryId
+                // Xử lý Footer đặc biệt
+                if (newsDto.Footer == null || newsDto.Footer == "null" || string.IsNullOrEmpty(newsDto.Footer))
+                {
+                    news.Footer = null;
+                }
+                else
+                {
+                    news.Footer = newsDto.Footer;
+                }
+
+                news.TimeReading = newsDto.TimeReading ?? news.TimeReading;
+                news.Links = newsDto.Links ?? "";
+                news.ModifiedDate = DateTime.Now;
+
                 if (newsDto.CategoryId.HasValue)
                 {
                     news.CategoryId = newsDto.CategoryId.Value;
@@ -283,7 +294,6 @@ namespace NewsPaper.src.Application.Services
                     news.ChildrenCategoryId = newsDto.ChildrenCategoryId.Value;
                 }
 
-                // FIXED: Cập nhật ImagesLink nếu có
                 if (!string.IsNullOrEmpty(newsDto.ImagesLink))
                 {
                     news.ImagesLink = newsDto.ImagesLink;
@@ -292,7 +302,6 @@ namespace NewsPaper.src.Application.Services
                 await _unitOfWork.News.UpdateAsync(news);
                 await _unitOfWork.SaveChangesAsync();
 
-                // Trả về NewsDto đầy đủ
                 return new NewsDto
                 {
                     NewsId = news.NewsId,

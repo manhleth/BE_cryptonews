@@ -65,6 +65,10 @@ namespace NewsPaper.src.Presentation.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(newsDto.Footer) || newsDto.Footer == "null" || newsDto.Footer == "")
+                {
+                    newsDto.Footer = null;
+                }
                 var news = await _newsService.CreateNewsAsync(newsDto);
                 return new ResponseData { Data = news, StatusCode = 1 };
             }

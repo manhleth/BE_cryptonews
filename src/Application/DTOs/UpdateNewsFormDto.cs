@@ -6,7 +6,7 @@
         public string Header { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public string Footer { get; set; }
+        public string? Footer { get; set; }
         public int? TimeReading { get; set; }
         public string? Links { get; set; }
         public int? CategoryId { get; set; }

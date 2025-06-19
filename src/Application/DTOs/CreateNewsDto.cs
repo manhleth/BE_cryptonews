@@ -8,7 +8,7 @@
 
         public string Content { get; set; }
 
-        public string Footer { get; set; }
+        public string? Footer { get; set; }
 
         public string? Links { get; set; }
 
