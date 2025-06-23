@@ -25,12 +25,14 @@ namespace NewsPaper.src.Application.Services
             return comment;
         }
 
+        // FIXED: Thêm CreatedDate vào response
         public async Task<object> GetCommentInPost(int newsID)
         {
             var listComment = await _unitOfWork.Comment.FindAsync(x => x.NewsId == newsID);
-            var listUSer = listComment.Select(x => x.UserId).ToList();  
+            var listUSer = listComment.Select(x => x.UserId).ToList();
             var listUserInfor = await _unitOfWork.User.FindAsync(x => listUSer.Contains(x.UserId));
             List<ListCommentResponseDto> listCommentResponse = new List<ListCommentResponseDto>();
+
             foreach (var item in listComment)
             {
                 var user = listUserInfor.FirstOrDefault(x => x.UserId == item.UserId);
@@ -39,11 +41,15 @@ namespace NewsPaper.src.Application.Services
                     CommentId = item.CommentId,
                     UserId = item.UserId,
                     Content = item.Content,
-                    UserAvartar = user.Avatar,
-                    UserFullName = user.Fullname
+                    UserAvartar = user?.Avatar ?? "/default-avatar.png",
+                    UserFullName = user?.Fullname ?? user?.Username ?? "Ẩn danh",
+                    CreatedDate = item.CreatedDate,
+                    NewsId = item.NewsId // Thêm NewsId
                 });
             }
-            return listCommentResponse;
+
+            // FIXED: Sắp xếp theo thứ tự mới nhất
+            return listCommentResponse.OrderByDescending(x => x.CreatedDate).ToList();
         }
 
         public async Task<object> DeleteComment(int commentID, int userId)
@@ -56,67 +62,62 @@ namespace NewsPaper.src.Application.Services
             return _mapper.Map<CommentDto>(comment);
         }
 
+        // FIXED: GetAllCommentAdmin - Trả về đầy đủ thông tin
         public async Task<object> GetAllCommentAdmin()
         {
-            var listComment = await _unitOfWork.Comment.GetAllObject();
-            var listUserId = listComment.Select(x => x.UserId).Distinct().ToList();
-            var listUserInfor = await _unitOfWork.User.FindAsync(x => listUserId.Contains(x.UserId));
-
-            // Debug logs
-            Console.WriteLine($"Found {listUserInfor.Count()} users for {listUserId.Count} unique user IDs");
-            foreach (var user in listUserInfor)
+            try
             {
-                Console.WriteLine($"User {user.UserId}: {user.Fullname} ({user.Username})");
-            }
+                // Lấy tất cả comments
+                var listComment = await _unitOfWork.Comment.GetAllObject();
 
-            // Lấy thông tin news
-            var listNewsId = listComment.Select(x => x.NewsId).Distinct().ToList();
-            var listNews = await _unitOfWork.News.FindAsync(x => listNewsId.Contains(x.NewsId));
+                // Lấy tất cả users
+                var userIds = listComment.Select(x => x.UserId).Distinct().ToList();
+                var listUserInfor = await _unitOfWork.User.FindAsync(x => userIds.Contains(x.UserId));
 
-            List<ListCommentResponseDto> listCommentResponse = new List<ListCommentResponseDto>();
-            foreach (var item in listComment)
-            {
-                var user = listUserInfor.FirstOrDefault(x => x.UserId == item.UserId);
+                // Lấy tất cả news để map title
+                var newsIds = listComment.Select(x => x.NewsId).Distinct().ToList();
+                var listNews = await _unitOfWork.News.FindAsync(x => newsIds.Contains(x.NewsId));
 
-                // Xử lý tên user với nhiều fallback
-                string userName = "Unknown User";
-                if (user != null)
+                List<AdminCommentResponseDto> listCommentResponse = new List<AdminCommentResponseDto>();
+
+                foreach (var item in listComment)
                 {
-                    if (!string.IsNullOrEmpty(user.Fullname))
-                        userName = user.Fullname;
-                    else if (!string.IsNullOrEmpty(user.Username))
-                        userName = user.Username;
-                    else
-                        userName = $"User #{user.UserId}";
-                }
-                else
-                {
-                    userName = $"User #{item.UserId} (Not Found)";
+                    var user = listUserInfor.FirstOrDefault(x => x.UserId == item.UserId);
+                    var news = listNews.FirstOrDefault(x => x.NewsId == item.NewsId);
+
+                    listCommentResponse.Add(new AdminCommentResponseDto
+                    {
+                        CommentId = item.CommentId,
+                        UserId = item.UserId,
+                        Content = item.Content,
+                        UserAvartar = user?.Avatar ?? "/default-avatar.png",
+                        UserFullName = user?.Fullname ?? user?.Username ?? "Ẩn danh",
+                        CreatedDate = item.CreatedDate,
+                        NewsId = item.NewsId,
+                        NewsTitle = news?.Title ?? news?.Header ?? "Không xác định"
+                    });
                 }
 
-                Console.WriteLine($"Comment {item.CommentId} by UserId {item.UserId} -> {userName}");
-
-                listCommentResponse.Add(new ListCommentResponseDto
-                {
-                    CommentId = item.CommentId,
-                    UserId = item.UserId,
-                    Content = item.Content,
-                    UserAvartar = user?.Avatar ?? "",
-                    UserFullName = userName,
-                    NewsId = item.NewsId,
-                    CreatedDate = item.CreatedDate ?? DateTime.Now
-                });
+                // Sắp xếp theo thứ tự mới nhất
+                return listCommentResponse.OrderByDescending(x => x.CreatedDate).ToList();
             }
-
-            return listCommentResponse;
+            catch (Exception ex)
+            {
+                // Log error và trả về empty list
+                Console.WriteLine($"Error in GetAllCommentAdmin: {ex.Message}");
+                return new List<AdminCommentResponseDto>();
+            }
         }
+
         public async Task<object> DeleteCommentByAdmin(int commentID)
         {
             var comment = await _unitOfWork.Comment.FindOnlyByCondition(x => x.CommentId == commentID);
+            if (comment == null)
+                return $"Comment with id {commentID} not found";
+
             await _unitOfWork.Comment.DeleteAsync(comment);
             await _unitOfWork.SaveChangesAsync();
             return $"Delete comment {commentID} success";
-
         }
     }
 }

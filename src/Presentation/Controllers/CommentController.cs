@@ -24,6 +24,7 @@ namespace NewsPaper.src.Presentation.Controllers
             _mapper = mapper;
             _commentService = commentService;
         }
+
         [HttpPost("CreateNewComment")]
         public async Task<ResponseData> CreateNewComment(CommentDto newComment)
         {
@@ -35,8 +36,16 @@ namespace NewsPaper.src.Presentation.Controllers
         [AllowAnonymous]
         public async Task<ResponseData> GetListCommentByNews(int newsID)
         {
-            var comment = await _commentService.GetCommentInPost(newsID);
-            return new ResponseData { Data = comment, StatusCode = 1 };
+            try
+            {
+                var comment = await _commentService.GetCommentInPost(newsID);
+                return new ResponseData { Data = comment, StatusCode = 1 };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting comments for news {NewsId}", newsID);
+                return new ResponseData { Data = new List<object>(), StatusCode = 1 };
+            }
         }
 
         [HttpGet("GetAllCommentAdmin")]
@@ -53,6 +62,7 @@ namespace NewsPaper.src.Presentation.Controllers
             var comment = await _commentService.DeleteComment(commentID, UserIDLogined);
             return new ResponseData { Data = comment, StatusCode = 1 };
         }
+
         [HttpDelete("DeleteCommentByAdmin")]
         [Authorize(Roles = "1")]
         public async Task<ResponseData> DeleteCommentByAdmin(int commentID)

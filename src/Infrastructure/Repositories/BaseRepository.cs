@@ -24,10 +24,10 @@ namespace NewsPaper.src.Infrastructure.Interfaces
             return await _context.Set<T>().FirstOrDefaultAsync(predicate);
         }
 
-        public async Task AddAsync(T news)
+        public async Task AddAsync(T entity)
         {
-            _context.Set<T>().Add(news);
-            await _context.SaveChangesAsync();
+            await _context.Set<T>().AddAsync(entity);
+            // Đã xóa: await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
@@ -35,16 +35,16 @@ namespace NewsPaper.src.Infrastructure.Interfaces
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public async Task UpdateAsync(T news)
+        // FIXED: Không gọi SaveChangesAsync trong UpdateAsync
+        public async Task UpdateAsync(T entity)
         {
-            _context.Set<T>().Update(news);
-            await _context.SaveChangesAsync();
+            _context.Set<T>().Update(entity);
         }
 
-        public async Task DeleteAsync(T news)
+        // FIXED: Không gọi SaveChangesAsync trong DeleteAsync
+        public async Task DeleteAsync(T entity)
         {
-            _context.Set<T>().Remove(news);
-            await _context.SaveChangesAsync();
+            _context.Set<T>().Remove(entity);
         }
 
         public async Task<IEnumerable<T>> GetAllObject()
@@ -57,11 +57,12 @@ namespace NewsPaper.src.Infrastructure.Interfaces
             return await _context.Set<T>().OrderByDescending(x => EF.Property<DateTime>(x, "CreatedDate")).Take(top).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetByConditionTop(Expression<Func<T, bool>> predicate,int top)
+        public async Task<IEnumerable<T>> GetByConditionTop(Expression<Func<T, bool>> predicate, int top)
         {
             return await _context.Set<T>().Where(predicate).OrderByDescending(x => EF.Property<DateTime>(x, "CreatedDate")).Take(top).ToListAsync();
         }
-        public Task<IEnumerable<T>> GetAll(T news)
+
+        public Task<IEnumerable<T>> GetAll(T entity)
         {
             throw new NotImplementedException();
         }
